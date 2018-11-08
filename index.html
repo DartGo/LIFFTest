@@ -45,8 +45,8 @@
   //     $('#test').text(result);
   //   })
   // })
-  const url = 'http://122.117.128.51:1880/ui/#/0';
+  const url = 'http://122.117.128.51:1880/data';
   fetch(url)
-  .then(data => {return data})
+  .then(data => {return data.json()})
   .then(res => {$('#test').text(res)})
 </script>
