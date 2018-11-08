@@ -43,7 +43,9 @@
 
   $(document).ready(function() {
     $.getJSON(url, function(result) {
-      $('#test').text(result);
+      var site1 = result[0].SiteName + ' UVI:' + result[0].UVI;
+      var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
+      $('#test').text(site1 + '\n' + site2);
     })
   })
   const url = 'https://script.google.com/macros/s/AKfycbwWTynKE3NEBR1Ketn0WYYmP7w0HAtnoW6nFd91rPC_lsgyC5zp/exec?county=高雄';
