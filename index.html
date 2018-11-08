@@ -39,14 +39,15 @@
 </html>
 
 <script>
-  $(document).ready(function() {
-    // const url = 'https://jsonplaceholder.typicode.com/posts';
-    $.getJSON(url, function(result) {
-      $('#test').text(result);
-    })
-  })
+  // $(document).ready(function() {
+  //   const url = 'https://jsonplaceholder.typicode.com/posts';
+  //   $.getJSON(url, function(result) {
+  //     $('#test').text(result);
+  //   })
+  // })
   const url = 'http://122.117.128.51:1880/data';
-  // fetch(url)
-  // .then(data => {return data.json()})
-  // .then(res => {$('#test').text(res)})
+  fetch(url)
+  .then(data => {return data.json()})
+  .then(res => {$('#test').text(res)})
+  .catch(err => {$('#test').text(err)})
 </script>
