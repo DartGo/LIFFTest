@@ -47,7 +47,7 @@
   // })
   const url = 'http://122.117.128.51:1880/data';
   fetch(url)
-  .then(data => {return data.json()})
+  .then(data => {return data})
   .then(res => {$('#test').text(res)})
   .catch(err => {$('#test').text(err)})
 </script>
