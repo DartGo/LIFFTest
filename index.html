@@ -42,7 +42,7 @@
       // const url = 'https://jsonplaceholder.typicode.com/posts';
 
   $(document).ready(function() {
-    $.getJSON(url, function(result) {
+    $.get(url, function(result) {
       $('#test').text(result);
     })
   })
