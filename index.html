@@ -39,14 +39,14 @@
 </html>
 
 <script>
-      const url = 'https://jsonplaceholder.typicode.com/posts';
+      // const url = 'https://jsonplaceholder.typicode.com/posts';
 
   $(document).ready(function() {
     $.get(url, function(result) {
       $('#test').text(result);
     })
   })
-  // const url = 'http://122.117.128.51:1880/data';
+  const url = 'http://122.117.128.51:1880/data';
   // fetch(url)
   // .then(data => {return data})
   // .then(res => {$('#test').text(res)})
