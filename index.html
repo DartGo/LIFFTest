@@ -42,13 +42,18 @@
       // const url = 'https://jsonplaceholder.typicode.com/posts';
 
   $(document).ready(function() {
-    $.getJSON(url, function(result) {
+    $.getJSON(url1, function(result) {
       var site1 = result[0].SiteName + ' UVI:' + result[0].UVI;
       var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
-      $('#test').text(site1 + '\n' + site2);
+      $('#test').text(site1 + '</br>' + site2);
+    });
+    $.getJSON(url2, function(result) {
+      var val = result.Temperature + ':' + result.Humidity;
+      $('#test').text(val);
     })
   })
-  const url = 'https://script.google.com/macros/s/AKfycbwWTynKE3NEBR1Ketn0WYYmP7w0HAtnoW6nFd91rPC_lsgyC5zp/exec?county=高雄';
+  const url1 = 'https://script.google.com/macros/s/AKfycbwWTynKE3NEBR1Ketn0WYYmP7w0HAtnoW6nFd91rPC_lsgyC5zp/exec?county=高雄';
+  const url2 = 'http://122.117.128.51:1880/data';
   // fetch(url)
   // .then(data => {return data})
   // .then(res => {$('#test').text(res)})
