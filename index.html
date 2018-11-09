@@ -11,6 +11,7 @@
 </head>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
 <script type="text/javascript"> 
+	alert('start...');
 if (window.navigator.geolocation) {
 	navigator.geolocation.getCurrentPosition(function (position) {
 		var lat 	 = position.coords.latitude,
@@ -28,12 +29,12 @@ if (window.navigator.geolocation) {
 						}
 					}
 				}
-				else {console.log("No reverse geocode results.")}
+				else {alert("No reverse geocode results.")}
 			}
-			else {console.log("Geocoder failed: " + status)}
+			else {alert("Geocoder failed: " + status)}
 		});
 	},
-	function() {console.log("Geolocation not available.")});
+	function() {alert("Geolocation not available.")});
 }
 </script> 
 </head> 
