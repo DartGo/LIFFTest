@@ -46,13 +46,13 @@
       var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
       $('#col1').html(site1 + '</br>' + site2);
     });
-//     $.get(url2, function(result) {
-//       $('#col2').html(result);
-//     });
+    $.get(url2, function(result) {
+      $('#col2').text(result);
+    });
   })
   
-  fetch(url2)
-  .then(data => {return data})
-  .then(res => {$('#col2').html(res)})
-  .catch(err => {$('#col2').html(err)})
+//   fetch(url2)
+//   .then(data => {return data})
+//   .then(res => {$('#col2').html(res)})
+//   .catch(err => {$('#col2').html(err)})
 </script>
