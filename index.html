@@ -46,9 +46,13 @@
       var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
       $('#col1').html(site1 + '</br>' + site2);
     });
-    $.get(url2, function(result) {
+    
+    $.getJSON(url2, function(result) {
       $('#col2').text(result);
     });
+//     $.get(url2, function(result) {
+//       $('#col2').text(result);
+//     });
   })
   
 //   fetch(url2)
