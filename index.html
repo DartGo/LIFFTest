@@ -25,7 +25,6 @@
     <div class="col-sm-4">
       <h3>Column 2</h3>
       <p id='col2'></p>
-      <iframe src="http://122.117.128.51:1880/ui/" width="640" height="516" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>    </div>
     <div class="col-sm-4">
       <h3>Column 3</h3>        
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
@@ -38,21 +37,20 @@
 </html>
 
 <script>
-      const url = 'https://script.google.com/a/macros/weideson.com/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
-
-  // $(document).ready(function() {
-  //   $.getJSON(url1, function(result) {
-  //     var site1 = result[0].SiteName + ' UVI:' + result[0].UVI;
-  //     var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
-  //     $('#col1').text(site1 + '</br>' + site2);
-  //   });
-  //   $.getJSON(url2, function(result) {
-  //     var val = result.Temperature + ':' + result.Humidity;
-  //     $('#col2').text(val);
-  //   })
-  // })
-  // const url1 = 'https://script.google.com/macros/s/AKfycbwWTynKE3NEBR1Ketn0WYYmP7w0HAtnoW6nFd91rPC_lsgyC5zp/exec?county=高雄';
-  // const url2 = 'http://122.117.128.51:1880/data';
+  const url1 = 'https://script.google.com/macros/s/AKfycbwWTynKE3NEBR1Ketn0WYYmP7w0HAtnoW6nFd91rPC_lsgyC5zp/exec?county=高雄';
+  $(document).ready(function() {
+    $.getJSON(url1, function(result) {
+      var site1 = result[0].SiteName + ' UVI:' + result[0].UVI;
+      var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
+      $('#col1').text(site1 + '</br>' + site2);
+    });
+    $.getJSON(url2, function(result) {
+      var val = result.Temperature + ':' + result.Humidity;
+      $('#col2').text(val);
+    })
+  })
+  
+  const url = 'https://script.google.com/a/macros/weideson.com/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
   fetch(url)
   .then(data => {return data})
   .then(res => {$('#col2').text(res)})
