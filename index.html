@@ -27,8 +27,7 @@
       <p id='col2'></p>
     <div class="col-sm-4">
       <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <p id='location'></p>
     </div>
   </div>
 </div>
@@ -68,10 +67,12 @@
   .then(
     function success (response) {
       console.log('User\'s Address Data is ', response)
+      $('#location').text(response);
     },
     function fail (status) {
       console.log('Request failed.  Returned status of',
                   status)
+      $('#location').text('err:' + response);
     }
    )
   }
