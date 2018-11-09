@@ -38,18 +38,19 @@
 
 <script>
   const url1 = 'https://script.google.com/macros/s/AKfycbwWTynKE3NEBR1Ketn0WYYmP7w0HAtnoW6nFd91rPC_lsgyC5zp/exec?county=高雄';
+  const url2 = 'https://script.google.com/a/macros/weideson.com/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
+
   $(document).ready(function() {
     $.getJSON(url1, function(result) {
       var site1 = result[0].SiteName + ' UVI:' + result[0].UVI;
       var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
-      $('#col1').text(site1 + '</br>' + site2);
+      $('#col1').html(site1 + '</br>' + site2);
     });
-    $.get(url, function(result) {
-      $('#col2').text(result);
+    $.get(url2, function(result) {
+      $('#col2').html(result);
     });
   })
   
-  const url = 'https://script.google.com/a/macros/weideson.com/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
 //   fetch(url)
 //   .then(data => {return data})
 //   .then(res => {$('#col2').text(res)})
