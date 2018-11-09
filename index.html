@@ -44,15 +44,14 @@
       var site2 = result[1].SiteName + ' UVI:' + result[1].UVI;
       $('#col1').text(site1 + '</br>' + site2);
     });
-//     $.getJSON(url2, function(result) {
-//       var val = result.Temperature + ':' + result.Humidity;
-//       $('#col2').text(val);
-//     })
+    $.get(url, function(result) {
+      $('#col2').text(result);
+    });
   })
   
   const url = 'https://script.google.com/a/macros/weideson.com/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
-  fetch(url)
-  .then(data => {return data})
-  .then(res => {$('#col2').text(res)})
-  .catch(err => {$('#col2').text(err)})
+//   fetch(url)
+//   .then(data => {return data})
+//   .then(res => {$('#col2').text(res)})
+//   .catch(err => {$('#col2').text(err)})
 </script>
