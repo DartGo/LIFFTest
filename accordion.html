@@ -18,24 +18,13 @@
       <tr>
         <th>Firstname</th>
         <th>Lastname</th>
-        <th>Email</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="data">
       <tr>
         <td>John</td>
         <td>Doe</td>
         <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
       </tr>
     </tbody>
   </table>
@@ -43,3 +32,17 @@
 
 </body>
 </html>
+
+<script>
+  const url2 = 'https://script.google.com/macros/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
+  $(document).ready(function() {
+    
+    $.getJSON(url2, function(result) {
+      var td = '<td>'+result[0].ServiceId+'</td>';
+      var td1= '<td>'+result[0].Service+'</td>';
+      $('#data').html(td + td1);
+    });
+
+  })
+
+</script>
