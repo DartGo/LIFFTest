@@ -36,7 +36,7 @@
     $.getJSON(url2, function(services) {
       services.forEach(function(s) {
         var td = '<tr><td>' + s.ServiceId + '</td>';
-        var td1= '<td>' + s.Service+'</td>';
+        var td1= '<td>' + s.Service + ',' + s.Status + '</td>';
         var td2= '<td>' + s.Status === 1 ? '已開通' : '未開通' + '</td></tr>';    
         tds += td + td1 + td2;
       });
