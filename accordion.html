@@ -11,13 +11,14 @@
 <body>
 
 <div class="table-responsive">
-  <h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+  <h2>崴得升生活小幫我</h2>
+  <p>您可以直接輸入 "編號" 或 "服務名稱" 來執行相關服務。</p>            
   <table class="table">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
+        <th>編號</th>
+        <th>服務頻道</th>
+        <th>狀態</th>
       </tr>
     </thead>
     <tbody id="data">
@@ -29,15 +30,18 @@
 </html>
 
 <script>
-  const url2 = 'https://script.google.com/macros/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec';
-  $(document).ready(function() {
-    
-    $.getJSON(url2, function(result) {
-      var td = '<tr><td>'+result[0].ServiceId+'</td>';
-      var td1= '<td>'+result[0].Service+'</td></tr>';
-      $('#data').html(td + td1);
+  const url2 = 'https://script.google.com/macros/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec?query=help';
+  $(document).ready(function() {  
+    var tds;
+    $.getJSON(url2, function(services) {
+      services.forEach(function(s) {
+        var td = '<tr><td>'+s.ServiceId+'</td>';
+        var td1= '<td>'+s.Service+'</td></tr>';
+        var td2= '<td>'+s.Status+'</td></tr>';    
+        tds += td + td1 + td2;
+      });
+      $('#data').html(tds);
     });
-
   })
 
 </script>
