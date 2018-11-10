@@ -35,9 +35,13 @@
     var tds;
     $.getJSON(url2, function(services) {
       services.forEach(function(s) {
+        var status;
+        if (s.Status === 1) status = '已開通'
+        else if (s.Status === 0) status = '即將開通'
+        else if (s.Status === -1) status = '請與我們連絡，我們將為您客制。'
         var td = '<tr><td>' + s.ServiceId + '</td>';
         var td1= '<td>' + s.Service + ',' + s.Status + '</td>';
-        var td2= '<td>' + s.Status === 1 ? '已開通' : '未開通' + '</td></tr>';    
+        var td2= '<td>' + status + '</td></tr>';    
         tds += td + td1 + td2;
       });
       $('#data').html(tds);
