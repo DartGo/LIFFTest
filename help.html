@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>崴得升生活小幫手</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    div {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <h4>您可以直接輸入 "編號" 或 "服務頻道" 來執行相關服務。</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>編號</th>
+        <th>服務頻道</th>
+        <th>狀態</th>
+      </tr>
+    </thead>
+    <tbody id="data">
+      <tr><td colspan=3>載入中...</td></tr>
+    </tbody>
+  </table>
+  <br>
+  <h4>若您有以下的需求，請與我們連絡。</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>編號</th>
+        <th>服務頻道</th>
+      </tr>
+    </thead>
+    <tbody id="data2">
+      <tr><td colspan=2>載入中...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+
+<script>
+  const url2 = 'https://script.google.com/macros/s/AKfycbzjXafgzyxYh5ffwi3PqJFk0_Bi0CasXyVmaeg6osisLOhE0j6T/exec?query=help';
+  $(document).ready(function() {  
+    var tds, tds2;
+    $.getJSON(url2, function(services) {
+      services.forEach(function(s) {
+        if (s.Status == 1 || s.Status == 0) {
+          var status;
+          if (s.Status == 1) status = '已開通'
+          else status = '即將開通'
+          var td = '<tr><td>' + s.ServiceId + '</td>';
+          var td1= '<td>' + s.Service + '</td>';
+          var td2= '<td>' + status + '</td></tr>';    
+          tds += td + td1 + td2;
+        }
+        if (s.Status == -1) {
+          var td = '<tr><td>' + s.ServiceId + '</td>';
+          var td1= '<td>' + s.Service + '</td></tr>';    
+          tds2 += td + td1;
+        }
+      });
+      $('#data').html(tds);
+      $('#data2').html(tds2);
+    });
+  })
+</script>
