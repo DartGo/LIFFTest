@@ -40,7 +40,7 @@
       </tr>
     </thead>
     <tbody id="data2">
-      <tr><td colspan=3>載入中...</td></tr>
+      <tr><td>載入中...</td></tr>
     </tbody>
   </table>
 </div>
@@ -64,7 +64,7 @@
           tds += td + td1 + td2;
         }
         if (s.Status == -1) {
-          var tds2 = '<tr colspan=3><td>' + s.Service + '</td></tr>';    
+          var tds2 += '<tr><td>' + s.Service + '</td></tr>';    
         }
       });
       $('#data').html(tds);
