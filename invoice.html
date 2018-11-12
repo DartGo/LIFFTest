@@ -12,6 +12,9 @@
       padding-left: 30px;
       padding-right: 30px;
     }
+    .last3digits {
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -48,7 +51,7 @@
         fp += f.substring(0,3) + '<span style="color:red">' + f.substring(4,7) + '</span>';
       });
       additionalPrizes.forEach(function (a) {
-        ap += '<span style="color:red">' + a + '</span>';
+        ap += '<span class="last3digits">' + a + '</span>';
       });
 
       var td1 = '<tr><td>特別獎</td><td>' + specialPrize + '</td></tr>';
