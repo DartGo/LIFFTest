@@ -39,12 +39,12 @@
     $.getJSON(url, function(data) {
       $('#content').text(data);
     })
-//     var td = '<tr>';
-//     $.getJSON(url, function(data) {
-//       data.forEach(function(d) {
-//         td += '<td>' + d.Months + '</td><td></td>';    
-//       });
-//       $('#data').html(td + '</tr>');
-//     });
+    var td = '<tr>';
+    $.getJSON(url, function(data) {
+      data.forEach(function(d) {
+        td += '<td>' + d.Months + '</td><td></td>';    
+      });
+      $('#data').html(td + '</tr>');
+    });
   })
 </script>
