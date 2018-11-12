@@ -47,9 +47,11 @@
       var td2 = '<td>特獎</td><td>' + specialPrize + '</td>';
       var td3 = '<td>頭獎</td><td>' + specialPrize + '</td>';
       var td4 = '<td>六獎</td><td>' + specialPrize + '</td>';
+      
+      var td = '<tr>' + td1 + td2 + td3 + td4 + '</tr>';
 
       $('#title').text(months);
-      $('#data').text(months);
+      $('#data').text(td);
     })
   })
 </script>
