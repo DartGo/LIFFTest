@@ -25,11 +25,10 @@
       </tr>
     </thead>
     <tbody id="data">
-      <tr><td colspan=2>載入中...</td></tr>
+      <tr><td colspan="2">載入中...</td></tr>
     </tbody>
   </table>
 </div>
-  <div id='content'></div>
 </body>
 </html>
 
@@ -37,14 +36,20 @@
   const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=invoice';
   $(document).ready(function() {  
     $.getJSON(url, function(data) {
-      $('#content').text(data.length);
+      var d = data[0];
+      var months = d.Months;
+      var specialPrize = d.SpecialPrize;
+      var grandPrize = d.GrandPrize;
+      var firstPrizes = d.FirstPrize; // []
+      var additionalPrizes = d.AdditionalPrize; //[]
+
+      var td1 = '<td>特別獎</td><td>' + specialPrize + '</td>';
+      var td2 = '<td>特獎</td><td>' + specialPrize + '</td>';
+      var td3 = '<td>頭獎</td><td>' + specialPrize + '</td>';
+      var td4 = '<td>六獎</td><td>' + specialPrize + '</td>';
+
+      $('#title').text(months);
+      $('#data').text(months);
     })
-//     var td = '<tr>';
-//     $.getJSON(url, function(data) {
-//       data.forEach(function(d) {
-//         td += '<td>' + d.Months + '</td><td></td>';    
-//       });
-//       $('#data').html(td + '</tr>');
-//     });
   })
 </script>
