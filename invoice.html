@@ -37,14 +37,14 @@
   const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=invoice';
   $(document).ready(function() {  
     $.getJSON(url, function(data) {
-      $('#content').text(data);
+      $('#content').text(data.length);
     })
-    var td = '<tr>';
-    $.getJSON(url, function(data) {
-      data.forEach(function(d) {
-        td += '<td>' + d.Months + '</td><td></td>';    
-      });
-      $('#data').html(td + '</tr>');
-    });
+//     var td = '<tr>';
+//     $.getJSON(url, function(data) {
+//       data.forEach(function(d) {
+//         td += '<td>' + d.Months + '</td><td></td>';    
+//       });
+//       $('#data').html(td + '</tr>');
+//     });
   })
 </script>
