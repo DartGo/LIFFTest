@@ -29,19 +29,22 @@
     </tbody>
   </table>
 </div>
-
+  <div id='content'></div>
 </body>
 </html>
 
 <script>
   const url = 'https://script.google.com/macros/s/AKfycbx7XokC12R1n_wpOJVlMa_AVSTme66FtPYXTzv5nbl9tN3FnU4/exec?query=invoice';
   $(document).ready(function() {  
-    var td = '<tr>';
     $.getJSON(url, function(data) {
-      data.forEach(function(d) {
-        td += '<td>' + d.Months + '</td><td></td>';    
-      });
-      $('#data').html(td + '</tr>');
-    });
+      $('#content').text(data);
+    })
+//     var td = '<tr>';
+//     $.getJSON(url, function(data) {
+//       data.forEach(function(d) {
+//         td += '<td>' + d.Months + '</td><td></td>';    
+//       });
+//       $('#data').html(td + '</tr>');
+//     });
   })
 </script>
