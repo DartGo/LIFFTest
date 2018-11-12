@@ -12,6 +12,9 @@
       padding-left: 30px;
       padding-right: 30px;
     }
+    .emphasize {
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -35,38 +38,30 @@
 <script>
   const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=invoice';
   $(document).ready(function() {  
-    // $.getJSON(url, function(data) {
-      // var d = data[0];
-      // var months = d.Months;
-      // var specialPrize = d.SpecialPrize;
-      // var grandPrize = d.GrandPrize;
-      // var firstPrizes = d.FirstPrize; // []
-      // var additionalPrizes = d.AdditionalPrize; //[]
-
-      // var d = data[0];
-      var months = '7-8';
-      var specialPrize = '73372972';
-      var grandPrize = '22315462';
-      var firstPrizes = ["91903003","16228722","03270598"]; // []
-      var additionalPrizes = ["163","983","814"]; //[]
-
-      vir fp, ap;
+    $.getJSON(url, function(data) {
+      var d = data[0];
+      var months = d.Months;
+      var specialPrize = d.SpecialPrize;
+      var grandPrize = d.GrandPrize;
+      var firstPrizes = d.FirstPrize; // []
+      var additionalPrizes = d.AdditionalPrize; //[]
+      var d = data[0];
+      
+      var fp = '', ap = '';
       firstPrizes.forEach(function (f) {
-        text += f.substring(0,5) + '<span style="color:red">' + f.substring(5,8) + '</span><br/>';
+        fp += f.substring(0,5) + '<span class="emphasize">' + f.substring(5,8) + '</span><br/>';
       });
       additionalPrizes.forEach(function (a) {
-        ap += '<span style="color:red">' + a + '</span>';
+        ap += '<span class="emphasize">' + a + '</span><br/>';
       });
-
       var td1 = '<tr><td>特別獎</td><td>' + specialPrize + '</td></tr>';
       var td2 = '<tr><td>特獎</td><td>' + grandPrize + '</td></tr>';
       var td3 = '<tr><td>頭獎</td><td>' + fp + '</td></tr>';
       var td4 = '<tr><td>六獎</td><td>' + ap + '</td></tr>';
       
       var td = td1 + td2 + td3 + td4;
-
       $('#title').text(months + '月份');
       $('#data').html(td);
-    // })
+    })
   })
 </script>
