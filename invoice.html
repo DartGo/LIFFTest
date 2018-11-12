@@ -32,6 +32,7 @@
     </tbody>
   </table>
 </div>
+  <div id="test"></div>
 </body>
 </html>
 
@@ -50,6 +51,8 @@
       for (i in firstPrizes) {
         fp += firstPrizes[i].substring(0,3) + '<span style="color:red">' + firstPrizes[i].substring(4,7) + '</span>';
       });
+            $('#data').html(fp);
+
 //       additionalPrizes.forEach(function (a) {
 //         ap += '<span class="last3digits">' + a + '</span>';
 //       });
@@ -57,7 +60,7 @@
       var td1 = '<tr><td>特別獎</td><td>' + specialPrize + '</td></tr>';
       var td2 = '<tr><td>特獎</td><td>' + grandPrize + '</td></tr>';
       var td3 = '<tr><td>頭獎</td><td>' + fp + '</td></tr>';
-      var td4 = '<tr><td>六獎</td><td>' + additionalPrizes.length + '</td></tr>';
+      var td4 = '<tr><td>六獎</td><td>' + additionalPrizes + '</td></tr>';
       
       var td = td1 + td2 + td3 + td4;
 
