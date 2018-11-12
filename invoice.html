@@ -40,16 +40,16 @@
       var months = d.Months;
       var specialPrize = d.SpecialPrize;
       var grandPrize = d.GrandPrize;
-      var firstPrizes = d.FirstPrize.split(','); // []
-      var additionalPrizes = d.AdditionalPrize.split(','); //[]
+      var firstPrizes = d.FirstPrize; // []
+      var additionalPrizes = d.AdditionalPrize; //[]
 
       vir fp, ap;
-//       firstPrizes.forEach(function (f) {
-//         fp += f.substring(0,3) + '<span style="color:red">' + f.substring(4,7) + '</span>';
-//       });
-//       additionalPrizes.forEach(function (a) {
-//         ap += '<span style="color:red">' + a + '</span>';
-//       });
+      firstPrizes.forEach(function (f) {
+        fp += f.substring(0,3) + '<span style="color:red">' + f.substring(4,7) + '</span>';
+      });
+      additionalPrizes.forEach(function (a) {
+        ap += '<span style="color:red">' + a + '</span>';
+      });
 
       var td1 = '<tr><td>特別獎</td><td>' + specialPrize + '</td></tr>';
       var td2 = '<tr><td>特獎</td><td>' + grandPrize + '</td></tr>';
