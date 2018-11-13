@@ -11,6 +11,6 @@
 
 <script>
   var param = new URLSearchParams(window.location.search);
-  var url = param.get("target");
+  var url = param.get("target") || 'https://dartgo.github.io/LIFFTest/';
   window.location.replace(url);
 </script>
