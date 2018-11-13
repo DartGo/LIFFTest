@@ -19,7 +19,7 @@
     p {
       color: blue;
     }
-    
+
     .error {
       color: red;
       text-align: center;
@@ -66,18 +66,32 @@
   </div>
 </body>
 <div id="url"></div>
+<div id="msg"></div>
+
 </html>
 <script>
-	liff.init(function (data) {
-    	$("#url").text(JSON.parse(data));
-    });
-    
-    
+  liff.init(function (data) {
+    $("#url").text(JSON.parse(data));
+  });
+
+
   $(document).ready(function () {
+    liff.getProfile()
+      .then(profile => {
+        const name = profile.displayName;
+        $("#msg").text(name);
+      })
+      .catch((err) => {
+        console.log('error', err);
+        $("#msg").text(err);
+      });
+
+
+
     var urlParams = new URLSearchParams(window.location.search);
     var url = urlParams.get('url') + '&key=' + urlParams.get('key');
     var tds, tds2;
-    
+
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
