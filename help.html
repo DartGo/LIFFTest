@@ -74,7 +74,7 @@
     var tds, tds2;
     //url += '&key=' + key;
     //$("#url").text(url);
-    //alert(url);
+    alert(url);
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
