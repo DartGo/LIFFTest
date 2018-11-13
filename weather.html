@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="#" id="weather">天氣預測</a></li>
-                <li><a href="https://www.cwb.gov.tw/m/o/UVI.htm">紫外線</a></li>
-                <li><a href="https://taqm.epa.gov.tw/taqm/tw/default.aspx">空氣品質</a></li>
-            </ul>
-        </div>
-    </nav>
+<div class="container">
+  <h2>Dynamic Tabs</h2>
+  <p>To make the tabs toggleable, add the data-toggle="tab" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
 
-    <div id="container">
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+    <li><a data-toggle="tab" href="#menu1">天氣預測</a></li>
+    <li><a data-toggle="tab" href="#menu2">空氣品質</a></li>
+    <li><a data-toggle="tab" href="#menu3">紫外線</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
+    <div id="menu1" class="tab-pane fade">
+      <iframe id="Weather" src="https://www.cwb.gov.tw/m/index.htm" width="100%" height="100%" frameborder="0"
+        allowfullscreen sandbox></iframe>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <iframe id="UVI" src="https://taqm.epa.gov.tw/taqm/tw/default.aspx" width="100%" height="100%" frameborder="0"
+        allowfullscreen sandbox></iframe>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <iframe id="UVI" src="https://www.cwb.gov.tw/m/o/UVI.htm" width="100%" height="100%" frameborder="0"
+        allowfullscreen sandbox></iframe>
+    </div>
+  </div>
+</div>
 
 </body>
-
 </html>
-
-<script>
-    $(document).ready(function () {
-        $.get("https://www.cwb.gov.tw/m/index.htm", function (data) { 
-            $("#container").html(data);
-        });
-        $("#weather").click(function () {
-            $.get("https://www.cwb.gov.tw/m/index.htm", function (data) { 
-                $("#container").html(data);
-            });
-        });
-    });
-</script>
