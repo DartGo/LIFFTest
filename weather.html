@@ -1,86 +1,14 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {box-sizing: border-box}
-
-/* Set height of body and the document to 100% */
-body, html {
-    height: 100%;
-    weidht: 100%
-    margin: 0;
-    font-family: Arial;
-}
-
-/* Style tab links */
-.tablink {
-    background-color: #555;
-    color: white;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    font-size: 17px;
-    width: 25%;
-}
-
-.tablink:hover {
-    background-color: #777;
-}
-
-/* Style the tab content (and add height:100% for full page content) */
-.tabcontent {
-    color: white;
-    display: none;
-    padding: 100px 20px;
-    height: 100%;
-}
-
-</style>
-</head>
-<body>
-
-<button class="tablink" onclick="openPage('Tab0', this, 'orange')" id="">天氣預測</button>
-<button class="tablink" onclick="openPage('Tab1', this, 'orange')" id="defaultOpen">天氣預測</button>
-<button class="tablink" onclick="openPage('Tab2', this, 'orange')">空氣品質</button>
-<button class="tablink" onclick="openPage('Tab3', this, 'orange')">紫外線</button>
-
-<div id="Tab0" class="tabcontent">
-      <iframe id="Weather" src="https://www.cwb.gov.tw/m/index.htm" width="90%" height="100%" frameborder="0"></iframe>
-</div>
-
-<div id="Tab1" class="tabcontent">
-      <iframe id="Weather" src="https://www.cwb.gov.tw/m/index.htm" width="90%" height="100%" frameborder="0"></iframe>
-</div>
-
-<div id="Tab2" class="tabcontent">
-      <iframe id="AQI" src="https://taqm.epa.gov.tw/taqm/tw/default.aspx" width="90%" height="100%" frameborder="0"></iframe>
-</div>
-
-<div id="Tab3" class="tabcontent">
-      <iframe id="UVI" src="https://www.cwb.gov.tw/m/o/UVI.htm" width="90%" height="100%" frameborder="0"></iframe>
-</div>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <div id="url"></div>
+    </body>
+</html>
 
 <script>
-function openPage(pageName,elmnt,color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(pageName).style.display = "block";
-    elmnt.style.backgroundColor = color;
-
-}
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+  var param = new URLSearchParams(window.location.search);
+  var url = param.get("target");
+  window.location.replace(url);
 </script>
-     
-</body>
-</html> 
