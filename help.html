@@ -75,7 +75,7 @@
     var key = urlParams.get('key');
 
     var tds, tds2;
-    url += key;
+    url += '&key=' + key;
     $("#url").text(url);
     $.getJSON(url, function (services) {
       if (services.error) {
