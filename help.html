@@ -11,7 +11,7 @@
     div {
       padding-left: 30px;
       padding-right: 30px;
-      font-size: 18px;
+      font-size: 16px;
     }
     p {
       color: blue;
@@ -59,8 +59,10 @@
       services.forEach(function(s) {
         if (s.Status == 1 || s.Status == 0) {
           var status;
-          if (s.Status == 1) status = '已開通'
-          else status = '即將開通'
+//           if (s.Status == 1) status = '已開通'
+//           else status = '即將開通'
+          const status = (s.Status == 1) ? '已開通' : '即將開通';
+          
           var td = '<tr><td>' + s.ServiceId + '</td>';
           var td1= '<td><a href="line://app/1615251267-MV34gwon">' + s.Service + '</a></td>';
           var td2= '<td>' + status + '</td></tr>';    
