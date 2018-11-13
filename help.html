@@ -75,7 +75,8 @@
       liff.getProfile()
       .then(profile => {
         const name = profile.displayName;
-        $("#msg").text(name);
+        const userid = profile.userId;
+        $("#msg").text(userid + ':' + name);
       })
       .catch((err) => {
         console.log('error', err);
