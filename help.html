@@ -65,15 +65,17 @@
     </table>
   </div>
 </body>
-
+<div id="url"></div>
 </html>
 <script>
-  const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
+  var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
   $(document).ready(function () {
   	var urlParams = new URLSearchParams(window.location.search);
     var key = urlParams.get('key');
     var tds, tds2;
-    var url += '&key=' + key;
+    url += '&key=' + key;
+    $("#url").text(url);
+    alert(url);
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
