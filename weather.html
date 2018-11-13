@@ -4,13 +4,11 @@
   <title>Bootstrap Example</title>
 </head>
 <body>  
-<div id="url"></div>
 </body>
 </html>
 
 <script>
   var param = new URLSearchParams(window.location.search);
   var url = param.get("target");
-  document.getElementById("url").innerHTML(url); 
-  //window.location.replace(url);
+  window.location.replace(url);
 </script>
