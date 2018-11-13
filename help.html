@@ -70,6 +70,9 @@
 <script>
   const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
   $(document).ready(function () {
+  	var urlParams = new URLSearchParams(window.location.search);
+    var key = urlParams.get('key');
+    alert(key);
     var tds, tds2;
     $.getJSON(url, function (services) {
       if (services.error) {
