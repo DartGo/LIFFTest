@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>崴得升生活小幫手</title>
   <meta charset="utf-8">
@@ -14,79 +15,79 @@
       padding-right: 30px;
       font-size: 16px;
     }
+
     p {
       color: blue;
     }
+    
+    .error {
+      color: red;
+      text-align: center;
+      font-size: 20px;
+      padding-top: 60px;
+    }
   </style>
 </head>
+
 <body>
 
-<div>
-	<p id="urerid"></p>
-  <p>您可以直接輸入 "編號" 或 "服務頻道" 來執行相關服務。</p>
-  <table class="table">
-    <thead>
-      <tr class="success">
-        <th>編號</th>
-        <th>服務頻道</th>
-        <th>狀態</th>
-        <th>已訂閱</th>
-      </tr>
-    </thead>
-    <tbody id="data">
-      <tr><td colspan=4>載入中...</td></tr>
-    </tbody>
-  </table>
-  <br>
-  <p>若您有以下的需求，請與我們連絡。</p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="success">服務頻道</th>
-      </tr>
-    </thead>
-    <tbody id="data2">
-      <tr><td>載入中...</td></tr>
-    </tbody>
-  </table>
-</div>
+  <div id="content">
+    <p id="urerid"></p>
+    <p>您可以直接輸入 "編號" 或 "服務頻道" 來執行相關服務。</p>
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th>編號</th>
+          <th>服務頻道</th>
+          <th>狀態</th>
+          <th>已訂閱</th>
+        </tr>
+      </thead>
+      <tbody id="data">
+        <tr>
+          <td colspan=4 id="message1">載入中...</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p>若您有以下的需求，請與我們連絡。</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="success2">服務頻道</th>
+        </tr>
+      </thead>
+      <tbody id="data2">
+        <tr>
+          <td id="message2">載入中...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
+
 </html>
 <script>
-  //init LIFF
-  function initializeApp(data) {
-      //取得QueryString
-      //let urlParams = new URLSearchParams(window.location.search);
-      //顯示QueryString
-      //$('#QueryString').val(urlParams.toString());
-      //顯示UserId
-      $('#userid').val(data.context.userId);
-    //alert(data.context.userId);
-    return data.context.userId;
-  }
-</script>
-<script>
   const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
-  $(document).ready(function() {  
-    //init LIFF
-    liff.init(function (data) {
-      const userid = initializeApp(data);
-      url += '&' + userid;
-    });
+  $(document).ready(function () {
     var tds, tds2;
-    $.getJSON(url, function(services) {      
-      services.forEach(function(s) {
+    $.getJSON(url, function (services) {
+      if (services.error) {
+        $("#content").html('<p class="error">' + services.message + '</p>');
+        return;
+      }
+      services.forEach(function (s) {
         if (s.Status == 1 || s.Status == 0) {
           const status = (s.Status == 1) ? '已開通' : '即將開通';
           const inService = s.InService ? '&check;' : ''
           var td = '<tr><td>' + s.ServiceId + '</td>';
-          var td1= '<td><a href="line://app/1615251267-MV34gwon">' + s.Service + '</a></td>';
-          var td2= '<td>' + status + '</td>';    
-          var td3= '<td>' + inService + '</td></tr>';    
+          var td1 = '<td><a href="line://app/1615251267-MV34gwon">' + s.Service + '</a></td>';
+          var td2 = '<td>' + status + '</td>';
+          var td3 = '<td>' + inService + '</td></tr>';
           tds += td + td1 + td2 + td3;
         }
         if (s.Status == -1) {
-          tds2 += '<tr><td>' + s.Service + '</td></tr>';    
+          tds2 += '<tr><td>' + s.Service + '</td></tr>';
         }
       });
       $('#data').html(tds);
