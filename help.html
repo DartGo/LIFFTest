@@ -48,7 +48,7 @@
     </tbody>
   </table>
 </div>
-
+  <div id="test"></div>
 </body>
 </html>
 
@@ -58,6 +58,7 @@
     var tds, tds2;
     $.getJSON(url, function(services) {
       services.forEach(function(s) {
+        $("#test").html(s);
         if (s.Status == 1 || s.Status == 0) {
           const status = (s.Status == 1) ? '已開通' : '即將開通';
           
