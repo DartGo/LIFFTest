@@ -3,12 +3,13 @@
     <head>
     </head>
     <body>
-        <div id="url"></div>
+        <div id="url">1</div>
     </body>
 </html>
 
 <script>
   var param = new URLSearchParams(window.location.search);
   var url = param.get("target");
-  window.location.replace(url);
+  document.getElementById("url").innerHTML(url); 
+  //window.location.replace(url);
 </script>
