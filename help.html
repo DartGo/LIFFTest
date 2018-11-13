@@ -53,15 +53,12 @@
 </html>
 
 <script>
-  const url2 = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
+  const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
   $(document).ready(function() {  
     var tds, tds2;
-    $.getJSON(url2, function(services) {
+    $.getJSON(url, function(services) {
       services.forEach(function(s) {
         if (s.Status == 1 || s.Status == 0) {
-          var status;
-//           if (s.Status == 1) status = '已開通'
-//           else status = '即將開通'
           const status = (s.Status == 1) ? '已開通' : '即將開通';
           
           var td = '<tr><td>' + s.ServiceId + '</td>';
