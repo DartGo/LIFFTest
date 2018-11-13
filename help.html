@@ -70,13 +70,9 @@
 
 </html>
 <script>
-  liff.init(function (data) {
-    $("#url").text(JSON.parse(data));
-  });
-
-
   $(document).ready(function () {
-    liff.getProfile()
+    liff.init(function (data) {
+      liff.getProfile()
       .then(profile => {
         const name = profile.displayName;
         $("#msg").text(name);
@@ -85,6 +81,9 @@
         console.log('error', err);
         $("#msg").text(err);
       });
+    });
+
+
 
 
 
