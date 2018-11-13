@@ -11,13 +11,14 @@
     div {
       padding-left: 30px;
       padding-right: 30px;
-      font-size: 20px;
+      font-size: 16px;
     }
     .emphasize {
       color: red;
     }
-    .letterspacing {    
+    .number {    
       letter-spacing: 5px;
+      font-size: 22px;      
     }
   </style>
 </head>
@@ -58,10 +59,10 @@
       additionalPrizes.forEach(function (a) {
         ap += '<span class="emphasize">' + a + '</span><br/>';
       });
-      var td1 = '<tr><td>特別獎</td><td class="letterspacing">' + specialPrize + '</td></tr>';
-      var td2 = '<tr><td>特獎</td><td class="letterspacing">' + grandPrize + '</td></tr>';
-      var td3 = '<tr><td>頭獎</td><td class="letterspacing">' + fp + '</td></tr>';
-      var td4 = '<tr><td>六獎</td><td class="letterspacing">' + ap + '</td></tr>';
+      var td1 = '<tr><td>特別獎</td><td class="number">' + specialPrize + '</td></tr>';
+      var td2 = '<tr><td>特獎</td><td class="number">' + grandPrize + '</td></tr>';
+      var td3 = '<tr><td>頭獎</td><td class="number">' + fp + '</td></tr>';
+      var td4 = '<tr><td>六獎</td><td class="number">' + ap + '</td></tr>';
       
       var td = td1 + td2 + td3 + td4;
       $('#title').text(months + '月份');
