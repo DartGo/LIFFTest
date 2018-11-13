@@ -68,6 +68,11 @@
 <div id="url"></div>
 </html>
 <script>
+	liff.init(function (data) {
+    	$("#url").text(data);
+    });
+    
+    
   $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     var url = urlParams.get('url') + '&key=' + urlParams.get('key');
