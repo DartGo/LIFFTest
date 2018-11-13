@@ -68,15 +68,11 @@
 <div id="url"></div>
 </html>
 <script>
-  //var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?query=help';
   $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
-    var url = urlParams.get('url');
-    var key = urlParams.get('key');
-
+    var url = urlParams.get('url') + '&key=' + urlParams.get('key');
     var tds, tds2;
-    url += '&key=' + key;
-    $("#url").text(url);
+    
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
