@@ -15,11 +15,9 @@
       padding-right: 30px;
       font-size: 16px;
     }
-
     p {
       color: blue;
     }
-
     .error {
       color: red;
       text-align: center;
@@ -65,33 +63,25 @@
     </table>
   </div>
 </body>
-<div id="url"></div>
-<div id="msg"></div>
-
 </html>
 <script>
   $(document).ready(function () {
     liff.init(function (data) {
       liff.getProfile()
       .then(profile => {
-        const name = profile.displayName;
-        const userid = profile.userId;
-        $("#msg").text(userid + ':' + name);
+        buildContent(profile)
       })
       .catch((err) => {
         console.log('error', err);
-        $("#msg").text(err);
       });
     });
+  })
 
+  function buildContent(data) {
+    var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=help';
+    url += '&k=' + data.userId;
 
-
-
-
-    var urlParams = new URLSearchParams(window.location.search);
-    var url = urlParams.get('url') + '&key=' + urlParams.get('key');
     var tds, tds2;
-
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
@@ -114,5 +104,5 @@
       $('#data').html(tds);
       $('#data2').html(tds2);
     });
-  })
+  }
 </script>
