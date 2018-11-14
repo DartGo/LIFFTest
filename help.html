@@ -92,7 +92,7 @@
           const status = (s.Status == 1) ? '已開通' : '即將開通';
           const inService = s.InService ? '&check;' : ''
           var td = '<tr><td>' + s.ServiceId + '</td>';
-          var td1 = '<td><a href="' + s.LiffUrl + ">' + s.Service + '</a></td>';
+          var td1 = '<td><a href="' + s.LiffUrl + '">' + s.Service + '</a></td>';
           var td2 = '<td>' + status + '</td>';
           var td3 = '<td>' + inService + '</td></tr>';
           tds += td + td1 + td2 + td3;
