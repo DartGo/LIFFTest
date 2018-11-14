@@ -17,7 +17,8 @@
 </html>
 
 <script>
+  var defaultUrl = 'https://www.cwb.gov.tw/m/index.htm';
   var param = new URLSearchParams(window.location.search);
-  var url = param.get("target") || 'https://dartgo.github.io/LIFFTest/index.html';
+  var url = param.get("target") || defaultUrl;
   window.location.replace(url);
 </script>
