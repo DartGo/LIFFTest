@@ -44,13 +44,12 @@
   const url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=invoice';
   $(document).ready(function() {  
     $.getJSON(url, function(data) {
-      var d = data[0];
-      var months = d.Months;
-      var specialPrize = d.SpecialPrize;
-      var grandPrize = d.GrandPrize;
-      var firstPrizes = d.FirstPrize; // []
-      var additionalPrizes = d.AdditionalPrize; //[]
-      var d = data[0];
+      //var d = data[0];
+      var months = data.Months;
+      var specialPrize = data.SpecialPrize;
+      var grandPrize = data.GrandPrize;
+      var firstPrizes = data.FirstPrize; // []
+      var additionalPrizes = data.AdditionalPrize; //[]
       
       var fp = '', ap = '';
       firstPrizes.forEach(function (f) {
