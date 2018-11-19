@@ -41,9 +41,26 @@
           <th>已訂閱</th>
         </tr>
       </thead>
-      <tbody id="data">
+      <tbody id="data1">
         <tr>
           <td colspan=4 id="message1">載入中...</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p>便利的小程式：</p>
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th>編號</th>
+          <th>服務頻道</th>
+          <th>狀態</th>
+          <th>已訂閱</th>
+        </tr>
+      </thead>
+      <tbody id="data2">
+        <tr>
+          <td colspan=4 id="message2">載入中...</td>
         </tr>
       </tbody>
     </table>
@@ -51,13 +68,13 @@
     <p>若您有以下的需求，請與我們連絡。</p>
     <table class="table">
       <thead>
-        <tr>
-          <th class="success2">服務頻道</th>
+        <tr class="success">
+          <th>服務頻道</th>
         </tr>
       </thead>
-      <tbody id="data2">
+      <tbody id="data3">
         <tr>
-          <td id="message2">載入中...</td>
+          <td id="message3">載入中...</td>
         </tr>
       </tbody>
     </table>
@@ -83,29 +100,40 @@
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=help';
     url += '&k=' + data.userId;
 
-    var tds, tds2;
+    var tds1, tds2, tds3;
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
         return;
       }
       services.forEach(function (s) {
-        if (s.Status == 1 || s.Status == 0) {
-          const status = (s.Status == 1) ? '已開通' : '即將開通';
-          const td1_content = s.LiffUrl ? '<a href=' + s.LiffUrl + '>' + s.Service + '</a>' : s.Service;
-          const inService = s.InService ? '&check;' : ''
-          var td = '<tr><td>' + s.ServiceId + '</td>';
-          var td1 = '<td>' + td1_content + '</td>';
-          var td2 = '<td>' + status + '</td>';
-          var td3 = '<td>' + inService + '</td></tr>';
-          tds += td + td1 + td2 + td3;
-        }
-        if (s.Status == -1) {
-          tds2 += '<tr><td>' + s.Service + '</td></tr>';
+        if (s.Catalog === 'ch') {
+          if (s.Status == 1 || s.Status == 0) {
+            const status = (s.Status == 1) ? '已開通' : '即將開通';
+            const td1_content = s.LiffUrl ? '<a href=' + s.LiffUrl + '>' + s.Service + '</a>' : s.Service;
+            const inService = s.InService ? '&check;' : ''
+            var td = '<tr><td>' + s.ServiceId + '</td>';
+            var td1 = '<td>' + td1_content + '</td>';
+            var td2 = '<td>' + status + '</td>';
+            var td3 = '<td>' + inService + '</td></tr>';
+            tds1 += td + td1 + td2 + td3;
+          }
+        } else if (s.Catalog === 'app') {
+          if (s.Status == 1 || s.Status == 0) {
+            const status = (s.Status == 1) ? '已開通' : '即將開通';
+            const td1_content = s.LiffUrl ? '<a href=' + s.LiffUrl + '>' + s.Service + '</a>' : s.Service;
+            var td = '<tr><td>' + s.ServiceId + '</td>';
+            var td1 = '<td>' + td1_content + '</td>';
+            var td2 = '<td>' + status + '</td></tr>';
+            tds2 += td + td1 + td2;
+          }
+        } else if (s.Catalog === 'ad') {
+          tds3 += '<tr><td>' + s.Service + '</td></tr>';
         }
       });
-      $('#data').html(tds);
+      $('#data1').html(tds1);
       $('#data2').html(tds2);
+      $('#data3').html(tds3);
     });
   }
 </script>
