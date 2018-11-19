@@ -79,13 +79,12 @@
         return;
       }
       services.forEach(function (s) {
-        var ch_percent = s.Change / (s.Quote + s.Change) * 100;
         var td1 = '<tr><td>' + s.Index + '</td>';
         var td2 = '<td>' + s.Date + '</td>';
         var td3 = '<td>' + s.LocalTime + '</td>';
-        var td4 = '<td>' + s.Quote + '</td></tr>';
-        var td5 = '<td>' + s.Change + '</td></tr>';
-        var td6 = '<td>' + ch_percent.toFixed(2) + '</td></tr>';
+        var td4 = '<td>' + s.Quote + '</td>';
+        var td5 = '<td>' + s.Change + '</td>';
+        var td6 = '<td>' + s.Percent + '</td></tr>';
         tds += td1 + td2 + td3 + td4 + td5 + td6;
       });
       $('#data').html(tds);
