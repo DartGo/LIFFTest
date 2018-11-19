@@ -63,7 +63,7 @@
         });
     });
 
-    buildContent();
+    buildContent(data);
   })
 
   function buildContent(data) {
@@ -80,7 +80,7 @@
         var td1 = '<tr><td>' + s.Index + '</td>';
         var td2 = '<td>' + s.Date + '\n' + s.LocalTime + '</td>';
         var td3 = '<td class="text-right">' + s.Quote + '</td>';
-        var td4 = '<td class="text-right">' + s.Change + '\n(' + s.Percent + ')</td></tr>';
+        var td4 = '<td class="text-right"> + s.Change + \n( + s.Percent + )</td></tr>';
         tds += td1 + td2 + td3 + td4;
       });
       $('#data').html(tds);
