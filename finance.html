@@ -82,14 +82,13 @@
                 return;
               }
               services.forEach(function (s) {
-              	var ch = Number(s.Change);                
-                var ch_class = (ch == 0 ?) '' : ch > 0? 'idx_up' : 'idx_down';
-                var change = '<span class=' + ch_class + '>' + stk_chg + '</span>';
-                //var percent = ch '<br/>(' + s.Percent + ')' : '';
+              	var ch = Number(s.Change);
+                var ch_class = (ch == 0)? '' : ch > 0? 'idx_up' : 'idx_down';
+                var change = '<span class=' + ch_class + '>' + ch + '</span>';
                 var td1 = '<tr><td>' + s.StockName + '</td>';
                 var td2 = '<td>' + s.Date + '<br/>' + s.LocalTime + '</td>';
                 var td3 = '<td class="text-right">' + s.ClosedPrice + '</td>';
-                var td4 = '<td class="text-right">' +  change + '<br/>' + percent + '</td></tr>';
+                var td4 = '<td class="text-right">' +  change + '<br/>(' + s.Percent + ')</td></tr>';
                 tds += td1 + td2 + td3 + td4;
               });
               $('#data_tse').html(tds);
