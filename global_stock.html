@@ -26,11 +26,11 @@
       font-size: 20px;
       padding-top: 60px;
     }
-    
+
     .idx_up {
       color: red;
-    }    
-    
+    }
+
     .idx_down {
       color: green;
     }
@@ -39,61 +39,90 @@
 
 <body>
 
-  <div id="content">
-    <table class="table">
-      <thead>
-        <tr class="success">
-          <th>指數名稱</th>
-          <th>時間</th>
-          <th>指數</th>
-          <th>漲跌</th>
-        </tr>
-      </thead>
-      <tbody id="data">
-        <tr>
-          <td colspan=4 id="message">載入中...</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container">
+    <h2>Dynamic Tabs</h2>
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#home">Home</a></li>
+      <li><a href="#menu1">Menu 1</a></li>
+      <li><a href="#menu2">Menu 2</a></li>
+      <li><a href="#menu3">Menu 3</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        <h3>HOME</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+          dolore magna aliqua.</p>
+      </div>
+
+      <!-- 國際股市 -->
+      <div id="menu1" class="tab-pane fade">
+        <h3>國際股市</h3>
+        <table class="table">
+          <thead>
+            <tr class="success">
+              <th>指數名稱</th>
+              <th>時間</th>
+              <th>指數</th>
+              <th>漲跌</th>
+            </tr>
+          </thead>
+          <tbody id="data">
+            <tr>
+              <td colspan=4 id="message">載入中...</td>
+            </tr>
+          </tbody>
+        </table>
+        <script>
+          $(document).ready(function () {
+            buildContent();
+          })
+
+          function buildContent() {
+            var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=global_stock';
+            // 暫時保留 url += '&k=' + data.userId;
+
+            var tds;
+            $.getJSON(url, function (services) {
+              if (services.error) {
+                $("#content").html('<p class="error">' + services.message + '</p>');
+                return;
+              }
+              services.forEach(function (s) {
+                var ch_class = Number(s.Change) >= 0 ? 'idx_up' : 'idx_down';
+                var change = '<span class=' + ch_class + '>' + s.Change + '</span>';
+                var td1 = '<tr><td>' + s.Index + '</td>';
+                var td2 = '<td>' + s.Date + '\n' + s.LocalTime + '</td>';
+                var td3 = '<td class="text-right">' + s.Quote + '</td>';
+                var td4 = '<td class="text-right">' + change + '\n(' + s.Percent + ')</td></tr>';
+                tds += td1 + td2 + td3 + td4;
+              });
+              $('#data').html(tds);
+            });
+          }
+        </script>
+      </div>
+
+      <!-- 匯市 -->
+      <div id="menu2" class="tab-pane fade">
+        <h3>Menu 2</h3>
+      </div>
+      <div id="menu3" class="tab-pane fade">
+        <h3>Menu 3</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      </div>
+    </div>
   </div>
+
+  <script>
+    $(document).ready(function () {
+      $(".nav-tabs a").click(function () {
+        $(this).tab('show');
+      });
+    });
+  </script>
+
+
 </body>
 
 </html>
-<script>
-  $(document).ready(function () {
-    liff.init(function (data) {
-      liff.getProfile()
-        .then(profile => {
-          buildContent(profile)
-        })
-        .catch((err) => {
-          console.log('error', err);
-        });
-    });
-
-    buildContent(data);
-  })
-
-  function buildContent(data) {
-    var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=global_stock';
-    // 暫時保留 url += '&k=' + data.userId;
-
-    var tds;
-    $.getJSON(url, function (services) {
-      if (services.error) {
-        $("#content").html('<p class="error">' + services.message + '</p>');
-        return;
-      }
-      services.forEach(function (s) {
-        var ch_class = Number(s.Change) >= 0 ? 'idx_up' : 'idx_down';
-        var change = '<span class=' + ch_class + '>' + s.Change + '</span>';
-        var td1 = '<tr><td>' + s.Index + '</td>';
-        var td2 = '<td>' + s.Date + '\n' + s.LocalTime + '</td>';
-        var td3 = '<td class="text-right">' + s.Quote + '</td>';
-        var td4 = '<td class="text-right">' + change + '\n(' + s.Percent + ')</td></tr>';
-        tds += td1 + td2 + td3 + td4;
-      });
-      $('#data').html(tds);
-    });
-  }
-</script>
