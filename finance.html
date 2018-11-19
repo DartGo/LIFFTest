@@ -11,8 +11,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
     div {
-      padding-left: 25px;
-      padding-right: 25px;
+      padding-left: 5px;
+      padding-right: 5px;
       font-size: 16px;
     }
 
@@ -40,7 +40,6 @@
 <body>
 
   <div class="container">
-    <h2>Dynamic Tabs</h2>
     <ul class="nav nav-tabs">
       <li class="active"><a href="#home">Home</a></li>
       <li><a href="#menu1">Menu 1</a></li>
@@ -49,11 +48,54 @@
     </ul>
 
     <div class="tab-content">
+      <!-- 台股 -->
       <div id="home" class="tab-pane fade in active">
-        <h3>HOME</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-          dolore magna aliqua.</p>
+        <h3>台股</h3>
+        <table class="table">
+          <thead>
+            <tr class="success">
+              <th>指數名稱</th>
+              <th>時間</th>
+              <th>指數</th>
+              <th>漲跌</th>
+            </tr>
+          </thead>
+          <tbody id="data_tse">
+            <tr>
+              <td colspan=4 id="message">載入中...</td>
+            </tr>
+          </tbody>
+        </table>
+        <script>
+          $(document).ready(function () {
+            buildContent_tse();
+          })
+          
+          function buildContent_tse() {
+            var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=tse_stock';
+            // 暫時保留 url += '&k=' + data.userId;
+
+            var tds;
+            $.getJSON(url, function (services) {
+              if (services.error) {
+                $("#content").html('<p class="error">' + services.message + '</p>');
+                return;
+              }
+              services.forEach(function (s) {
+                var ch_class = Number(s.Change) >= 0 ? 'idx_up' : 'idx_down';
+                var change = '<span class=' + ch_class + '>' + s.Change + '</span>';
+                var td1 = '<tr><td>' + s.StockName + '</td>';
+                var td2 = '<td>' + s.Date + '\n' + s.LocalTime + '</td>';
+                var td3 = '<td class="text-right">' + s.ClosedPrice + '</td>';
+                var td4 = '<td class="text-right">' +  change || '' + '\n(' + s.Percent + ')</td></tr>';
+                tds += td1 + td2 + td3 + td4;
+              });
+              $('#data_tse').html(tds);
+            });
+          }
+        </script>
       </div>
+
 
       <!-- 國際股市 -->
       <div id="menu1" class="tab-pane fade">
@@ -67,7 +109,7 @@
               <th>漲跌</th>
             </tr>
           </thead>
-          <tbody id="data">
+          <tbody id="data_intl">
             <tr>
               <td colspan=4 id="message">載入中...</td>
             </tr>
@@ -97,7 +139,7 @@
                 var td4 = '<td class="text-right">' + change + '\n(' + s.Percent + ')</td></tr>';
                 tds += td1 + td2 + td3 + td4;
               });
-              $('#data').html(tds);
+              $('#data_intl').html(tds);
             });
           }
         </script>
