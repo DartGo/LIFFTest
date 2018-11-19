@@ -39,7 +39,6 @@
           <th>時間</th>
           <th>指數</th>
           <th>漲跌</th>
-          <th>漲跌幅</th>
         </tr>
       </thead>
       <tbody id="data">
@@ -82,7 +81,7 @@
         var td2 = '<td>' + s.Date + '\n' + s.LocalTime + '</td>';
         var td3 = '<td class="text-right">' + s.Quote + '</td>';
         var td4 = '<td class="text-right">' + s.Change + '\n(' + s.Percent + ')</td></tr>';
-        tds += td1 + td2 + td3 + td4 + td5;
+        tds += td1 + td2 + td3 + td4;
       });
       $('#data').html(tds);
     });
