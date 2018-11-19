@@ -83,8 +83,8 @@
         var td2 = '<td>' + s.Date + '</td>';
         var td3 = '<td>' + s.LocalTime + '</td>';
         var td4 = '<td>' + s.Quote + '</td>';
-        var td5 = '<td>' + s.Change + '</td>';
-        var td6 = '<td>' + s.Percent + '</td></tr>';
+        var td5 = '<td class="text-right">' + s.Change + '</td>';
+        var td6 = '<td class="text-right">' + s.Percent + '</td></tr>';
         tds += td1 + td2 + td3 + td4 + td5 + td6;
       });
       $('#data').html(tds);
