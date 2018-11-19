@@ -49,19 +49,18 @@
     <div class="tab-content">
       <!-- 台股 -->
       <div id="home" class="tab-pane fade in active">
-        <h3>台股</h3>
+        <h3>台股</h3><span id="tse_date"></span>
         <table class="table">
           <thead>
             <tr class="success">
               <th>股名</th>
-              <th>時間</th>
               <th>股價</th>
               <th>漲跌</th>
             </tr>
           </thead>
           <tbody id="data_tse">
             <tr>
-              <td colspan=4 id="message">載入中...</td>
+              <td colspan=3 id="message">載入中...</td>
             </tr>
           </tbody>
         </table>
@@ -85,12 +84,12 @@
                 var ch_class = (ch == 0)? '' : ch > 0? 'idx_up' : 'idx_down';
                 var change = '<span class=' + ch_class + '>' + ch + '</span>';
                 var td1 = '<tr><td>' + s.StockName + '</td>';
-                var td2 = '<td>' + s.Date + '<br/>' + s.LocalTime + '</td>';
-                var td3 = '<td class="text-right">' + s.ClosedPrice + '</td>';
-                var td4 = '<td class="text-right">' +  change + '<br/>(' + s.Percent + ')</td></tr>';
-                tds += td1 + td2 + td3 + td4;
+                var td2 = '<td class="text-right">' + s.ClosedPrice + '</td>';
+                var td3 = '<td class="text-right">' +  change + '<br/>(' + s.Percent + ')</td></tr>';
+                tds += td1 + td2 + td3;
               });
               $('#data_tse').html(tds);
+              $('#tse_date').html('(' + services[0].Date + ' ' + services[0].LocalTime + ')'); 
             });
           }
         </script>
