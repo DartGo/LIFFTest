@@ -54,8 +54,8 @@
           <thead>
             <tr class="success">
               <th>股名</th>
-              <th>股價</th>
-              <th>漲跌</th>
+              <th class="text-center">股價</th>
+              <th class="text-center">漲跌</th>
             </tr>
           </thead>
           <tbody id="data_tse">
@@ -80,10 +80,11 @@
                 return;
               }
               services.forEach(function (s) {
+              	var no = (s.StockNo)? '(' + s.StockNo + ')' : '';
               	var ch = Number(s.Change);
                 var ch_class = (ch == 0)? '' : ch > 0? 'idx_up' : 'idx_down';
                 var change = '<span class=' + ch_class + '>' + ch + '</span>';
-                var td1 = '<tr><td>' + s.StockName + '</td>';
+                var td1 = '<tr><td>' + no + s.StockName + '</td>';
                 var td2 = '<td class="text-right">' + s.ClosedPrice + '</td>';
                 var td3 = '<td class="text-right">' +  change + '<br/>(' + s.Percent + ')</td></tr>';
                 tds += td1 + td2 + td3;
