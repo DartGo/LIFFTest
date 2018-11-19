@@ -77,7 +77,7 @@
         return;
       }
       services.forEach(function (s) {
-        var change = '<span class="' + s.Change >= 0 ? 'idx_up' : 'idx_down' + '">' + s.Change + '</span>';
+        var change = '<span class="' + Number(s.Change) >= 0 ? 'idx_up' : 'idx_down' + '">' + s.Change + '</span>';
         var td1 = '<tr><td>' + s.Index + '</td>';
         var td2 = '<td>' + s.Date + '\n' + s.LocalTime + '</td>';
         var td3 = '<td class="text-right">' + s.Quote + '</td>';
