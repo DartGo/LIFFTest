@@ -16,10 +16,6 @@
       font-size: 18px;
     }
 
-    p {
-      color: blue;
-    }
-
     .error {
       color: red;
       text-align: center;
@@ -53,7 +49,8 @@
     <div class="tab-content">
       <!-- 台股 -->
       <div id="menu1" class="tab-pane fade in active">
-        <h3>台股</h3><span id="tse_date"></span>
+        <br/>
+        <span id="tse_date" class="s_font"></span>
         <table class="table">
           <thead>
             <tr class="success">
@@ -94,7 +91,7 @@
                 tds += td1 + td2 + td3;
               });
               $('#data_tse').html(tds);
-              $('#tse_date').html('(' + services[0].Date + ' ' + services[0].LocalTime + ')');
+              $('#tse_date').html('資料時間：' + services[0].Date + ' ' + services[0].LocalTime);
             });
           }
         </script>
@@ -103,7 +100,7 @@
 
       <!-- 國際股市 -->
       <div id="menu2" class="tab-pane fade">
-        <h3>國際股市</h3>
+        <br/>
         <table class="table">
           <thead>
             <tr class="success">
@@ -152,7 +149,8 @@
 
       <!-- 匯市 -->
       <div id="menu3" class="tab-pane fade">
-        <h3>匯市</h3><span id="currency_date"></span>
+        <br/>
+        <span id="currency_date" class="s_font"></span>
         <table class="table">
           <thead>
             <tr class="success">
@@ -196,7 +194,7 @@
                 tds += td1 + td2 + td3 + td4 + td5;
               });
               $('#data_currency').html(tds);
-              $('#currency_date').html('(' + services[0].UpdatedDate + ')');
+              $('#currency_date').html('資料時間：' + services[0].UpdatedDate);
             });
            }
         </script>
