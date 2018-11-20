@@ -121,10 +121,10 @@
         </table>
         <script>
           $(document).ready(function () {
-            buildContent();
+            buildContent_global();
           })
 
-          function buildContent() {
+          function buildContent_global() {
             var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=global_stock';
             // 暫時保留 url += '&k=' + data.userId;
 
@@ -147,24 +147,24 @@
               $('#data_intl').html(tds);
             });
           }
-        </script>
+        </script>
       </div>
 
       <!-- 匯市 -->
       <div id="menu2" class="tab-pane fade">
-        <h3>匯市</h3>
+        <h3>匯市</h3><span id="currency_date"></span>
         <table class="table">
           <thead>
             <tr class="success">
-              <th rowspan=2>幣別</th>
-              <th colspan=2>現金</th>
-              <th colspan=2>即期</th>
+              <th rowspan=2 class=" text-center">幣別</th>
+              <th colspan=2 class=" text-center">現金</th>
+              <th colspan=2 class=" text-center">即期</th>
             </tr>
             <tr class="success">
-              <th>買入</th>
-              <th>賣出</th>
-              <th>買入</th>
-              <th>賣出</th>
+              <th class=" text-center">買入</th>
+              <th class=" text-center">賣出</th>
+              <th class=" text-center">買入</th>
+              <th class=" text-center">賣出</th>
             </tr>
           </thead>
           <tbody id="data_currency">
@@ -175,33 +175,31 @@
         </table>
         <script>
           $(document).ready(function () {
-            buildContent();
+            buildContent_currency();
           })
 
-          // function buildContent() {
-          //   var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=global_stock';
-          //   // 暫時保留 url += '&k=' + data.userId;
+          function buildContent_currency() {
+            var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=currency';
 
-          //   var tds;
-          //   $.getJSON(url, function (services) {
-          //     if (services.error) {
-          //       $("#content").html('<p class="error">' + services.message + '</p>');
-          //       return;
-          //     }
-          //     services.forEach(function (s) {
-          //       var ch = Number(s.Change);
-          //       var ch_class = (ch == 0) ? '' : ch > 0 ? 'idx_up' : 'idx_down';
-          //       var change = '<span class=' + ch_class + '>' + ch + '</span>';
-          //       var td1 = '<tr><td>' + s.Index + '</td>';
-          //       var td2 = '<td class="s_font">' + s.Date + '<br/>' + s.LocalTime + '</td>';
-          //       var td3 = '<td class="text-right s_font">' + s.Quote + '</td>';
-          //       var td4 = '<td class="text-right s_font">' + change + '<br/>(' + s.Percent + ')</td></tr>';
-          //       tds += td1 + td2 + td3 + td4;
-          //     });
-          //     $('#data_intl').html(tds);
-          //   });
-          }
-        </script>
+            var tds;
+            $.getJSON(url, function (services) {
+              if (services.error) {
+                $("#content").html('<p class="error">' + services.message + '</p>');
+                return;
+              }
+              services.forEach(function (s) {
+                var td1 = '<tr><td>' + s.Currency + '</td>';
+                var td2 = '<td class="text-right s_font">' + s.CashToBuy + '</td>';
+                var td3 = '<td class="text-right s_font">' + s.CashToSell + '</td>';
+                var td4 = '<td class="text-right s_font">' + s.SpotToBuy + '</td>';
+                var td5 = '<td class="text-right s_font">' + s.SpotToSell + '</td></tr>';
+                tds += td1 + td2 + td3 + td4 + td5;
+              });
+              $('#data_currency').html(tds);
+              $('#currency_date').html('(' + services[0].UpdatedDate + ')');
+            });
+           }
+        </script>
       </div>
 
     </div>
