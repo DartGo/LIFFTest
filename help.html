@@ -62,6 +62,22 @@
         </tr>
       </tbody>
     </table>
+    <br>    
+    <p>便民連結服務：</p>
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th>編號</th>
+          <th>服務頻道</th>
+          <th>狀態</th>
+        </tr>
+      </thead>
+      <tbody id="data3">
+        <tr>
+          <td colspan=3>載入中...</td>
+        </tr>
+      </tbody>
+    </table>
     <br>
     <p>若您有以下的需求，請與我們連絡。</p>
     <table class="table">
@@ -70,7 +86,7 @@
           <th>服務頻道</th>
         </tr>
       </thead>
-      <tbody id="data3">
+      <tbody id="data4">
         <tr>
           <td>載入中...</td>
         </tr>
@@ -81,7 +97,7 @@
 </html>
 <script>
   $(document).ready(function () {
-    /*liff.init(function (data) {
+    liff.init(function (data) {
       liff.getProfile()
       .then(profile => {
         buildContent(profile)
@@ -90,15 +106,14 @@
         console.log('error', err);
       });
     });
-	*/
-    buildContent(data);
+    buildContent({userId:''});
   })
 
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=help';
-    //url += '&k=' + data.userId;
+    url += '&k=' + data.userId;
 
-    var tds1, tds2, tds3;
+    var tds1, tds2, tds3, tds4;
     $.getJSON(url, function (services) {
       if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
@@ -132,15 +147,16 @@
             var td = '<tr><td>' + s.ServiceId + '</td>';
             var td1 = '<td>' + td1_content + '</td>';
             var td2 = '<td>' + status + '</td></tr>';
-            tds2 += td + td1 + td2;
+            tds3 += td + td1 + td2;
           }
         } else if (s.Catalog === 'ad') {
-          tds3 += '<tr><td>' + s.Service + '</td></tr>';
+          tds4 += '<tr><td>' + s.Service + '</td></tr>';
         }
       });
       $('#data1').html(tds1);
       $('#data2').html(tds2);
       $('#data3').html(tds3);
+      $('#data4').html(tds4);
     });
   }
 </script>
