@@ -125,6 +125,15 @@
             var td2 = '<td>' + status + '</td></tr>';
             tds2 += td + td1 + td2;
           }
+        } else if (s.Catalog === 'link') {
+          if (s.Status == 1 || s.Status == 0) {
+            const status = (s.Status == 1) ? '已開通' : '即將開通';
+            const td1_content = s.LiffUrl ? '<a href=' + s.LiffUrl + '>' + s.Service + '</a>' : s.Service;
+            var td = '<tr><td>' + s.ServiceId + '</td>';
+            var td1 = '<td>' + td1_content + '</td>';
+            var td2 = '<td>' + status + '</td></tr>';
+            tds2 += td + td1 + td2;
+          }
         } else if (s.Catalog === 'ad') {
           tds3 += '<tr><td>' + s.Service + '</td></tr>';
         }
