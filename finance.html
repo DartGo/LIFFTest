@@ -34,6 +34,10 @@
     .s_font {
       font-size: 16px;
     }
+    
+    .m_font {
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -67,7 +71,8 @@
         </table>
         <script>
           $(document).ready(function () {
-            buildContent_tse();
+            // buildContent_tse();
+            buildContent_tse50();
           })
 
           function buildContent_tse() {
@@ -92,6 +97,30 @@
               });
               $('#data_tse').html(tds);
               $('#tse_date').html('資料時間：' + services[0].Date + ' ' + services[0].LocalTime);
+            });
+          }
+          
+          function buildContent_tse50() {
+            var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=tse_50';
+            // 暫時保留 url += '&k=' + data.userId;
+			var tds;
+            $.getJSON(url, function (services) {
+              if (services.error) {
+                $("#menu1").html('<p class="error">' + services.message + '</p>');
+                return;
+              }
+              services.forEach(function (s) {
+                var no = (s.StockNo) ? '(' + s.StockNo + ')' : '';
+                var ch = Number(s.Change);
+                var ch_class = (ch == 0) ? '' : ch > 0 ? 'idx_up' : 'idx_down';
+                var change = '<span class=' + ch_class + '>' + ch + '</span>';
+                var td1 = '<tr><td>' + no + s.StockName + '</td>';
+                var td2 = '<td class="text-right">' + s.ClosedPrice + '</td>';
+                var td3 = '<td class="text-right">' + change + '<br/>(' + s.Percent + ')</td></tr>';
+                tds += td1 + td2 + td3;
+              });
+              $('#data_tse').html(tds);
+              $('#tse_date').html('資料時間：' + services[0].UpdatedDate);
             });
           }
         </script>
@@ -154,15 +183,15 @@
         <table class="table">
           <thead>
             <tr class="success">
-              <th rowspan=2 class=" text-center">幣別</th>
-              <th colspan=2 class=" text-center">現金</th>
-              <th colspan=2 class=" text-center">即期</th>
+              <th rowspan=2 class="m_font text-center">幣別</th>
+              <th colspan=2 class="m_font text-center">現金</th>
+              <th colspan=2 class="m_font text-center">即期</th>
             </tr>
             <tr class="success">
-              <th class=" text-center">買入</th>
-              <th class=" text-center">賣出</th>
-              <th class=" text-center">買入</th>
-              <th class=" text-center">賣出</th>
+              <th class="m_font text-center">買入</th>
+              <th class="m_font text-center">賣出</th>
+              <th class="m_font text-center">買入</th>
+              <th class="m_font text-center">賣出</th>
             </tr>
           </thead>
           <tbody id="data_currency">
