@@ -34,6 +34,10 @@
     .s_font {
       font-size: 16px;
     }
+ 
+    .ss_font {
+      font-size: 14px;
+    } 
     
     .m_font {
       font-size: 18px;
@@ -59,7 +63,7 @@
           <thead>
             <tr class="success">
               <th>股名</th>
-              <th class="text-center">成交股數</th>
+              <th class="text-center">成交張數</th>
               <th class="text-center">股價</th>
               <th class="text-center">漲跌</th>
             </tr>
@@ -190,10 +194,10 @@
               <th colspan=2 class="m_font text-center">即期</th>
             </tr>
             <tr class="success">
-              <th class="m_font text-center">買入</th>
-              <th class="m_font text-center">賣出</th>
-              <th class="m_font text-center">買入</th>
-              <th class="m_font text-center">賣出</th>
+              <th class="s_font text-center">買入</th>
+              <th class="s_font text-center">賣出</th>
+              <th class="s_font text-center">買入</th>
+              <th class="s_font text-center">賣出</th>
             </tr>
           </thead>
           <tbody id="data_currency">
@@ -217,11 +221,11 @@
                 return;
               }
               services.forEach(function (s) {
-                var td1 = '<tr><td class="text-right s_font">' + s.Currency + '</td>';
-                var td2 = '<td class="text-right s_font">' + s.CashToBuy + '</td>';
-                var td3 = '<td class="text-right s_font">' + s.CashToSell + '</td>';
-                var td4 = '<td class="text-right s_font">' + s.SpotToBuy + '</td>';
-                var td5 = '<td class="text-right s_font">' + s.SpotToSell + '</td></tr>';
+                var td1 = '<tr><td class="text-right ss_font">' + s.Currency + '</td>';
+                var td2 = '<td class="text-right ss_font">' + s.CashToBuy + '</td>';
+                var td3 = '<td class="text-right ss_font">' + s.CashToSell + '</td>';
+                var td4 = '<td class="text-right ss_font">' + s.SpotToBuy + '</td>';
+                var td5 = '<td class="text-right ss_font">' + s.SpotToSell + '</td></tr>';
                 tds += td1 + td2 + td3 + td4 + td5;
               });
               $('#data_currency').html(tds);
