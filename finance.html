@@ -59,6 +59,7 @@
           <thead>
             <tr class="success">
               <th>股名</th>
+              <th class="text-center">成交股數</th>
               <th class="text-center">股價</th>
               <th class="text-center">漲跌</th>
             </tr>
@@ -86,11 +87,11 @@
                 return;
               }
               services.forEach(function (s) {
-                var stock = s.StockNo + '<br/>' + s.StockName;
+                var no = (s.StockNo) ? '(' + s.StockNo + ')' : '';
                 var ch = Number(s.Change);
                 var ch_class = (ch == 0) ? '' : ch > 0 ? 'idx_up' : 'idx_down';
                 var change = '<span class=' + ch_class + '>' + ch + '</span>';
-                var td1 = '<tr><td>' + stock + '</td>';
+                var td1 = '<tr><td>' + no + s.StockName + '</td>';
                 var td2 = '<td class="text-right">' + s.ClosedPrice + '</td>';
                 var td3 = '<td class="text-right">' + change + '<br/>(' + s.Percent + ')</td></tr>';
                 tds += td1 + td2 + td3;
@@ -110,14 +111,15 @@
                 return;
               }
               services.forEach(function (s) {
-                var no = (s.StockNo) ? '(' + s.StockNo + ')' : '';
+                var stock = s.StockNo + '<br/>' + s.StockName;
                 var ch = Number(s.Change);
                 var ch_class = (ch == 0) ? '' : ch > 0 ? 'idx_up' : 'idx_down';
                 var change = '<span class=' + ch_class + '>' + ch + '</span>';
-                var td1 = '<tr><td>' + no + s.StockName + '</td>';
-                var td2 = '<td class="text-right">' + s.ClosedPrice + '</td>';
-                var td3 = '<td class="text-right">' + change + '<br/>(' + s.Percent + ')</td></tr>';
-                tds += td1 + td2 + td3;
+                var td1 = '<tr><td>' + stock + '</td>';
+                var td2 = '<td class="text-right">' + s.TradingVolume + '</td>';
+                var td3 = '<td class="text-right">' + s.ClosedPrice + '</td>';
+                var td4 = '<td class="text-right">' + change + '<br/>(' + s.Percent + ')</td></tr>';
+                tds += td1 + td2 + td3 + td4;
               });
               $('#data_tse').html(tds);
               $('#tse_date').html('資料時間：' + services[0].UpdatedDate);
