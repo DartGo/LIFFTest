@@ -81,7 +81,7 @@
 </html>
 <script>
   $(document).ready(function () {
-    liff.init(function (data) {
+    /*liff.init(function (data) {
       liff.getProfile()
       .then(profile => {
         buildContent(profile)
@@ -90,13 +90,13 @@
         console.log('error', err);
       });
     });
-
-    buildContent();
+	*/
+    buildContent(data);
   })
 
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=help';
-    url += '&k=' + data.userId;
+    //url += '&k=' + data.userId;
 
     var tds1, tds2, tds3;
     $.getJSON(url, function (services) {
