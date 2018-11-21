@@ -52,9 +52,8 @@
       <li class="active"><a href="#menu1">台灣50</a></li>
       <li><a href="#menu2">國際股市</a></li>
       <li><a href="#menu3">匯市</a></li>
-      <li><a href="help.html">StockQ</a></li>
     </ul>
-
+    <a href="https://www.google.com.tw/">StockQ</a>
     <div class="tab-content">
       <!-- 台股 -->
       <div id="menu1" class="tab-pane fade in active">
@@ -242,8 +241,7 @@
   <script>
     $(document).ready(function () {
       $(".nav-tabs a").click(function () {
-      	var title = $(this).text();
-        if (title !== "StockQ") $(this).tab('show');
+      	$(this).tab('show');
       });
     });
   </script>
