@@ -50,7 +50,7 @@
         return;
       }
       services.forEach(function (s) {              
-		links += '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + s.LiffUrl + '">' + s.Service + '</a>';
+		links += '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + s.TargetUrl + '">' + s.Service + '</a>';
       })
       $('#content').html(links);
       
