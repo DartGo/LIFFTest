@@ -97,17 +97,16 @@
 </html>
 <script>
   $(document).ready(function () {
-    var data = {userId:''};
     liff.init(function (data) {
       liff.getProfile()
       .then(profile => {
-        data = profile;
+        buildContent(profile)
       })
       .catch((err) => {
         console.log('error', err);
       });
     });
-    buildContent(data);
+    //buildContent({userId:''});
   })
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=help';
