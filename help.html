@@ -97,22 +97,21 @@
 </html>
 <script>
   $(document).ready(function () {
+    var data = {userId:''};
     liff.init(function (data) {
       liff.getProfile()
       .then(profile => {
-        buildContent(profile)
+        data = profile;
       })
       .catch((err) => {
         console.log('error', err);
       });
     });
-    // mock: buildContent({userId:''});
+    buildContent(data);
   })
-
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=help';
     url += '&k=' + data.userId;
-
     var tds1, tds2, tds3, tds4;
     $.getJSON(url, function (services) {
       if (services.error) {
