@@ -11,9 +11,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
     div {
-      padding-left: 25px;
-      padding-right: 25px;
-      font-size: 16px;
+      padding-left: 0px;
+      padding-right: 0px;
+      font-size: 20px;
     }
 
     p {
@@ -31,8 +31,6 @@
 
 <body>
   <div id="content">
-    <a href="#" class="btn btn-info btn-block">Test Link</a>
-    <div id="data1"></div>
   </div>
 </body>
 
@@ -45,15 +43,19 @@
   function buildContent() {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=convenience';
 
+	var links ='';
     $.getJSON(url, function (services) {
-      if (services.error) {
+     if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
         return;
       }
-      services.forEach(function (s) {
-        const td1_content = s.LiffUrl ? '<a href=' + s.LiffUrl + '>' + s.Service + '</a>' : s.Service;
-      });
-      $('#data1').html(td1_content);
+      services.forEach(function (s) {              
+		links += '<a class="btn btn-info btn-block" href="' + s.LiffUrl + '">' + s.Service + '</a>';
+      })
+      $('#content').html(links);
+      
     });
   }
 </script>
+
+
