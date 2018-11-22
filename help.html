@@ -121,7 +121,7 @@
         if (s.Catalog === 'ch') {
           if (s.Status == 1 || s.Status == 0) {
             const status = (s.Status == 1) ? '已開通' : '即將開通';
-            const td1_content = s.LiffUrl ? '<a href=' + s.LiffUrl + '>' + s.Service + '</a>' : s.Service;
+            const td1_content = s.LiffUrl ? '<a href=' + s.TargetUrl + '>' + s.Service + '</a>' : s.Service;
             const inService = s.InService ? '&check;' : ''
             var td = '<tr><td>' + s.ServiceId + '</td>';
             var td1 = '<td>' + td1_content + '</td>';
