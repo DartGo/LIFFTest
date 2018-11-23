@@ -39,6 +39,7 @@
         <a class="card-link" data-toggle="collapse" href="#collapseOne">
           天氣預報
         </a>
+        <span id="county"><span>
       </div>
       <div id="collapseOne" class="collapse show" data-parent="#accordion">
         <div class="card-body"> 
@@ -136,6 +137,7 @@ var links ='';
             $('#weather').html(tr1 + tr2);
             $('#uvi').html(weather.UVI);
             $('#aqi').html(weather.AQI);
+            $('#county').html(services.County);
 
       // 使用者訂閱頻道
       var channels = services.Channels;
