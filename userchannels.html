@@ -28,6 +28,21 @@
       font-size: 20px;
       padding-top: 60px;
     }
+    .s_font {
+      font-size: 16px;
+    }
+ 
+    .ss_font {
+      font-size: 14px;
+    } 
+    
+    .sss_font {
+      font-size: 12px;
+    } 
+    
+    .m_font {
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -115,7 +130,7 @@
         console.log('error', err);
       });
     });
-    //buildContent({userId:''});  
+    buildContent({userId:'U75dbdba8cbbb3cc39bd67d631b28afbe'});  
   })
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=userchannels';
@@ -130,11 +145,23 @@ var links ='';
       // weather, aqi, uvi
       var weather = services.Weather;
       var wea = weather.WEA;
+      
+      var time1 = wea.StartTime1 + '<br/>~' + wea.EndTime1;
+      var temp1 = wea.Min1 + '-' + wea.Max1 + '°C'; 
+
+      
+      var time2 = wea.StartTime2 + '<br/>~' + wea.EndTime2;
+      var temp2 = wea.Min2 + '-' + wea.Max2 + '°C'; 
+      
+      var tr1 = '<tr><td class="text-right sss_font">' + time1 + '</td><td>' + temp1 + '</td><td>' + wea.PoP1 + '%' + '</td></tr>';
+	  var tr2 = '<tr><td class="text-right sss_font">' + time2 + '</td><td>' + temp2 + '</td><td>' + wea.PoP2 + '%' + '</td></tr>';
+
+/*
       var period1 = wea.TimePeriod1;
       var period2 = wea.TimePeriod2;
       var tr1 = '<tr><td class="text-right">' + period1.TimePeriod + '</td><td>' + period1.Temp + '</td><td>' + period1.PoP + '</td></tr>';
       var tr2 = '<tr><td class="text-right">' + period2.TimePeriod + '</td><td>' + period2.Temp + '</td><td>' + period2.PoP + '</td></tr>';
-      
+*/      
             $('#weather').html(tr1 + tr2);
             $('#uvi').html(weather.UVI);
             $('#aqi').html(weather.AQI);
