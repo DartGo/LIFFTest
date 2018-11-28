@@ -146,15 +146,15 @@ var links ='';
       var weather = services.Weather;
       var wea = weather.WEA;
       
-      var time1 = wea.StartTime1 + '<br/>~' + wea.EndTime1;
+      var time1 = wea.StartTime1.substring(5,16) + '<br/>~' + wea.EndTime1.substring(5,16);
       var temp1 = wea.Min1 + '-' + wea.Max1 + '°C'; 
 
       
-      var time2 = wea.StartTime2 + '<br/>~' + wea.EndTime2;
+      var time2 = wea.StartTime2.substring(5,16) + '<br/>~' + wea.EndTime2.substring(5,16);
       var temp2 = wea.Min2 + '-' + wea.Max2 + '°C'; 
       
-      var tr1 = '<tr><td class="text-right sss_font">' + time1 + '</td><td>' + temp1 + '</td><td>' + wea.PoP1 + '%' + '</td></tr>';
-	  var tr2 = '<tr><td class="text-right sss_font">' + time2 + '</td><td>' + temp2 + '</td><td>' + wea.PoP2 + '%' + '</td></tr>';
+      var tr1 = '<tr><td class="text-right ss_font">' + time1 + '</td><td>' + temp1 + '</td><td>' + wea.PoP1 + '%' + '</td></tr>';
+	  var tr2 = '<tr><td class="text-right ss_font">' + time2 + '</td><td>' + temp2 + '</td><td>' + wea.PoP2 + '%' + '</td></tr>';
 
 /*
       var period1 = wea.TimePeriod1;
