@@ -8,9 +8,9 @@
   <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
@@ -45,140 +45,193 @@
     td {
       padding-top: 10px; 
     }
+    .subtitle {
+    	font-weight: bold;
+        font-size: 18px;
+    }
+    .loading {
+        text-align: center;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="text-center"><h5>天氣預報通知時間設定</h5></div>
-    <div>
-   	  訂閱狀況：<input id="status" type="checkbox" data-size="small" data-style="ios" data-offstyle="">
-    </div>
-    <hr>
-    <h5>週</h5> 請選擇每週的那幾天要通知
-    <p></p>
-    <table width="100%">
-      <tr>
-        <td class="text-center">週一<br/><input id="w-1" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-        <td class="text-center">週二<br/><input id="w-2" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-        <td class="text-center">週三<br/><input id="w-3" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-        <td class="text-center">週四<br/><input id="w-4" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-        <td class="text-center">週五<br/><input id="w-5" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-      </tr>
-      <tr>
-        <td class="text-center">週六<br/><input id="w-6" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-        <td class="text-center">週日<br/><input id="w-7" type="checkbox" data-size="mini" data-style="ios" data-offstyle="" disabled></td>
-        <td class="text-center"></td>
-        <td class="text-center"></td>
-        <td class="text-center"></td>
-      </tr>
-    </table>
-    <hr>
-    <h5>時間</h5> 請選擇要觸發的時間（最多三次，均為整點，有前後 15 分鐘的誤差）, 若無選擇週，則無法選擇時間。
-    <p></p>
-    <table width="100%">
-      <tr>
-        <td id="timer1" class="text-center"></td>        
-        <td id="timer2" class="text-center"></td>        
-        <td id="timer3" class="text-center"></td>        
-      </tr> 
- 	  <tr>
-      	<td id="dropdown-morning" class="text-center">          
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>上午
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li class=""><a href="#">06:00</a></li>
-              <li class=""><a href="#">07:00</a></li>
-              <li class=""><a href="#">08:00</a></li>
-              <li class=""><a href="#">09:00</a></li>
-              <li class=""><a href="#">10:00</a></li>
-              <li class=""><a href="#">11:00</a></li>
-            </ul>
-          </div>
-        </td>
-        <td id="dropdown-afternoon" class="text-center">          
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>下午
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li class=""><a href="#">12:00</a></li>
-              <li class=""><a href="#">13:00</a></li>
-              <li class=""><a href="#">14:00</a></li>
-              <li class=""><a href="#">15:00</a></li>
-              <li class=""><a href="#">16:00</a></li>
-              <li class=""><a href="#">17:00</a></li>
-            </ul>
-          </div>
-        </td>
-        <td id="dropdown-night" class="text-center">          
-          <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>晚上
-            <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li class=""><a href="#">18:00</a></li>
-              <li class=""><a href="#">19:00</a></li>
-              <li class=""><a href="#">20:00</a></li>
-              <li class=""><a href="#">21:00</a></li>
-              <li class=""><a href="#">22:00</a></li>
-              <li class=""><a href="#">23:00</a></li>
-            </ul>
-          </div>
-        </td>      
-      </tr>
-    </table>
-    <hr>
-    <h5>地區</h5> 請選擇要預報的縣市。
-    <p>
-        <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>地區
-            <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li class=""><a href="#">台北市</a></li>
-            <li class=""><a href="#">新北市</a></li>
-            <li class=""><a href="#">桃園市</a></li>
-            <li class=""><a href="#">台中市</a></li>
-            <li class=""><a href="#">台南市</a></li>
-            <li class=""><a href="#">高雄市</a></li>
-          </ul>
-    </div>
-    </p>     
-   
-</div>
+  <div class="loading m_font"><br/><h4>載入中...</h4></div>
+  <form method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
+    <input type="hidden" name="userId" value="">
+    <input type="hidden" name="requestBy" value="">
+    <input type="hidden" name="timer1" value="">
+    <input type="hidden" name="timer2" value="">
+    <input type="hidden" name="timer3" value="">
+    <input type="hidden" name="city" value="">
+
+    <div class="container" id="container" style="display:none">
+      <div class="text-center">
+        <h4>天氣預報通知時間設定</h4>
+      </div>
+      <table width="100%">
+        <tr>
+          <td>訂閱狀況：<input id="status" type="checkbox" data-size="small" data-style="ios" data-offstyle=""></td>
+          <td class="text-right">記得要更新才會生效喔：<input type="submit" class="btn btn-info" value="更新"></td>
+        </tr>
+      </table>
+      <hr>
+      <div class="maindata">
+        <span class='subtitle'>週</span> 請選擇每週的那幾天要通知
+        <p></p>
+        <table width="100%">
+          <tr>
+            <td class="text-center">週一<br /><input id="w1" name="w1" type="checkbox" data-size="mini" data-style="ios"
+                disabled></td>
+            <td class="text-center">週二<br /><input id="w2" name="w2" type="checkbox" data-size="mini" data-style="ios"
+                disabled></td>
+            <td class="text-center">週三<br /><input id="w3" name="w3" type="checkbox" data-size="mini" data-style="ios"
+                disabled></td>
+            <td class="text-center">週四<br /><input id="w4" name="w4" type="checkbox" data-size="mini" data-style="ios"
+                disabled></td>
+            <td class="text-center">週五<br /><input id="w5" name="w5" type="checkbox" data-size="mini" data-style="ios"
+                disabled></td>
+          </tr>
+          <tr>
+            <td class="text-center">週六<br /><input id="w6" type="checkbox" data-size="mini" data-style="ios" disabled></td>
+            <td class="text-center">週日<br /><input id="w7" type="checkbox" data-size="mini" data-style="ios" disabled></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+            <td class="text-center"></td>
+          </tr>
+        </table>
+        <hr>
+        <span class='subtitle'>時間</span> 請選擇要觸發的時間（最多三次，均為整點，有前後 15 分鐘的誤差）, 若無選擇週，則無法選擇時間。
+        <p></p>
+        <table width="100%">
+          <tr>
+            <td id="timer1" class="text-center"></td>
+            <td id="timer2" class="text-center"></td>
+            <td id="timer3" class="text-center"></td>
+          </tr>
+          <tr>
+            <td id="dropdown-morning" class="text-center">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>上午
+                  <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class=""><a href="#">06:00</a></li>
+                  <li class=""><a href="#">07:00</a></li>
+                  <li class=""><a href="#">08:00</a></li>
+                  <li class=""><a href="#">09:00</a></li>
+                  <li class=""><a href="#">10:00</a></li>
+                  <li class=""><a href="#">11:00</a></li>
+                </ul>
+              </div>
+            </td>
+            <td id="dropdown-afternoon" class="text-center">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>下午
+                  <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class=""><a href="#">12:00</a></li>
+                  <li class=""><a href="#">13:00</a></li>
+                  <li class=""><a href="#">14:00</a></li>
+                  <li class=""><a href="#">15:00</a></li>
+                  <li class=""><a href="#">16:00</a></li>
+                  <li class=""><a href="#">17:00</a></li>
+                </ul>
+              </div>
+            </td>
+            <td id="dropdown-night" class="text-center">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>晚上
+                  <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class=""><a href="#">18:00</a></li>
+                  <li class=""><a href="#">19:00</a></li>
+                  <li class=""><a href="#">20:00</a></li>
+                  <li class=""><a href="#">21:00</a></li>
+                  <li class=""><a href="#">22:00</a></li>
+                  <li class=""><a href="#">23:00</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <hr>
+        <span class='subtitle'>地區</span> 請選擇要預報的縣市。
+        <table width="100%">
+          <tr>
+            <td class="text-center"><span class='city' id="city"></span></td>
+          </tr>
+          <tr>
+            <td id="dropdown-city" class="text-center">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" disabled>地區
+                  <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-header">六都</li>
+                  <li class=""><a href="#">台北市</a></li>
+                  <li class=""><a href="#">新北市</a></li>
+                  <li class=""><a href="#">桃園市</a></li>
+                  <li class=""><a href="#">台中市</a></li>
+                  <li class=""><a href="#">台南市</a></li>
+                  <li class=""><a href="#">高雄市</a></li>
+                  <li class="dropdown-header">北部地區</li>
+                  <li class=""><a href="#">基隆市</a></li>
+                  <li class=""><a href="#">新竹市</a></li>
+                  <li class=""><a href="#">新竹縣</a></li>
+                  <li class=""><a href="#">苗栗縣</a></li>
+                  <li class="dropdown-header">中部地區</li>
+                  <li class=""><a href="#">彰化縣</a></li>
+                  <li class=""><a href="#">南投縣</a></li>
+                  <li class="dropdown-header">南部地區</li>
+                  <li class=""><a href="#">雲林縣</a></li>
+                  <li class=""><a href="#">嘉義市</a></li>
+                  <li class=""><a href="#">嘉義縣</a></li>
+                  <li class=""><a href="#">屏東縣</a></li>
+                  <li class="dropdown-header">東部地區</li>
+                  <li class=""><a href="#">宜蘭縣</a></li>
+                  <li class=""><a href="#">花蓮縣</a></li>
+                  <li class=""><a href="#">台東縣</a></li>
+                  <li class="dropdown-header">離島地區</li>
+                  <li class=""><a href="#">澎湖縣</a></li>
+                  <li class=""><a href="#">金門縣</a></li>
+                  <li class=""><a href="#">連江縣</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div> <!-- maindata -->
+    </div> <!--container-->
+  </form>
 </body>
 
 </html>
 
 
 <script>
-  $(function() {
-    $('#status').bootstrapToggle(); // 'on' / 'off'
-    $('#w-1').bootstrapToggle();
-    $('#w-2').bootstrapToggle();
-    $('#w-3').bootstrapToggle();
-    $('#w-4').bootstrapToggle();
-    $('#w-5').bootstrapToggle();
-    $('#w-6').bootstrapToggle();
-    $('#w-7').bootstrapToggle();  
-  })
-  
   $(document).ready(function () {
-    var initCheckBoxes = function() {
-    	$(".dropdown-toggle").prop('disabled', !$("#status").prop('checked'));
-    	$("table input").prop('disabled', !$("#status").prop('checked'));
+    var initCheckBoxes = function () {
+      $(".dropdown-toggle").prop('disabled', !$("#status").prop('checked'));
+      $(".maindata input").prop('disabled', !$("#status").prop('checked'));
+      //$("#status").attr( "checked", 'checked' );
     };
     $("#status").on("change", initCheckBoxes);
-    $('#dropdown-morning li').on('click', function(){
-    	$('#timer1').html($(this).text());
-	});
-    $('#dropdown-afternoon li').on('click', function(){
-    	$('#timer2').html($(this).text());
-	});   
-    $('#dropdown-night li').on('click', function(){
-    	$('#timer3').html($(this).text());
-	});
-    
-    
+    $('#dropdown-morning li').on('click', function () {
+      $('#timer1').html($(this).text());
+      $("input[name=timer1]").val($(this).text());
+    });
+    $('#dropdown-afternoon li').on('click', function () {
+      $('#timer2').html($(this).text());
+      $("input[name=timer2]").val($(this).text());
+    });
+    $('#dropdown-night li').on('click', function () {
+      $('#timer3').html($(this).text());
+      $("input[name=timer3]").val($(this).text());
+    });
+    $('#dropdown-city li').on('click', function () {
+      $('#city').html($(this).text());
+      $("input[name=city]").val($(this).text());
+    });
+
     liff.init(function (data) {
       liff.getProfile()
         .then(profile => {
@@ -193,20 +246,73 @@
     });
   })
   function buildContent(data) {
-    var url = 'https: //script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=usertimersettings';
-    url += '&k=' + data.userId;
+    var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=usertimersettings';
+    url += '&k=' + data.userId + '&s=weather';
 
-    $.getJSON(url, function (services) {
-      if (services.error) {
-        $("#content").html('<p class="error">' + services.message + '</p>');
+    $.getJSON(url, function (service) {
+      $('.loading').hide();
+      $('#container').show();
+
+      if (service.error) {
+        $("#container").html('<p class="error">' + service.message + '</p>');
         return;
       };
-      
-      
-      // weather, aqi, uvi
-      //var weather = services.Weather;
 
-      //$('#weather').html(tr1 + tr2);
+      $('#status').bootstrapToggle('on');
+
+
+      /// 週
+      var weekdays = service.Weekdays;
+      var w1, w2, w3, w4, w5, w6, w7;
+
+      weekdays.map(function (w) {
+        if (w === '1') w1 = 'on';
+        if (w === '2') w2 = 'on';
+        if (w === '3') w3 = 'on';
+        if (w === '4') w4 = 'on';
+        if (w === '5') w5 = 'on';
+        if (w === '6') w6 = 'on';
+        if (w === '7') w7 = 'on';
+      });
+
+      $('#w1').bootstrapToggle(w1 || 'off');
+      $('#w2').bootstrapToggle(w2 || 'off');
+      $('#w3').bootstrapToggle(w3 || 'off');
+      $('#w4').bootstrapToggle(w4 || 'off');
+      $('#w5').bootstrapToggle(w5 || 'off');
+      $('#w6').bootstrapToggle(w6 || 'off');
+      $('#w7').bootstrapToggle(w7 || 'off');
+
+
+      /// 時
+      var hours = service.Hours;
+      var h1, h2, h3; // 三個時段
+
+      hours.map(function (h) {
+        var intH = parseInt(h);
+        if (intH <= 10) h = '0' + h;
+        var strH = h + ':00';
+
+        if (intH <= 11 && intH >= 6) {
+          $('#timer1').html(strH);
+          $("input[name=timer1]").val(strH);
+        } else if (intH <= 17 && intH >= 12) {
+          $('#timer2').html(strH);
+          $("input[name=timer2]").val(strH);
+        } else if (intH <= 23 && intH >= 18) {
+          $('#timer3').html(strH);
+          $("input[name=timer3]").val(strH);
+        }
+      });
+
+      /// 地區
+      $('#city').html(service.Location || '');
+      $("input[name=city]").val(service.Location || '');
+
+      /// 
+      $("input[name=requestBy]").val('weather');
+      $("input[name=userId]").val(data.userId);
+
     });
   }
 </script>
