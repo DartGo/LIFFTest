@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title id="title"></title>
   <meta charset="utf-8">
@@ -14,43 +15,57 @@
       padding-right: 5px;
       font-size: 20px;
     }
+
     .emphasize {
       color: red;
     }
-    .number {    
+
+    .number {
       letter-spacing: 5px;
-      font-size: 22px;  
+      font-size: 22px;
       text-align: center;
       padding-left: 60px;
       padding-right: 60px;
     }
+
     th {
-    	text-align: center;
+      text-align: center;
+    }
+    
+    .error {
+      color: red;
+      text-align: center;
+      font-size: 20px;
+      padding-top: 60px;
     }
   </style>
 </head>
+
 <body>
 
-<div>
-  <table class="table">
-    <thead>
-      <tr class="success">
-      	<th></th>
-        <th>獎別</th>
-        <th>中獎號碼</th>      	
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="data">
-      <tr><td colspan="4">載入中...</td></tr>
-    </tbody>
-  </table>
-</div>
+  <div id="content">
+    <table class="table">
+      <thead>
+        <tr class="success">
+          <th></th>
+          <th>獎別</th>
+          <th>中獎號碼</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="data">
+        <tr>
+          <td colspan="4">載入中...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
+
 </html>
 
 <script>
-  $(document).ready(function() {  
+  $(document).ready(function () {
     liff.init(function (data) {
       liff.getProfile()
         .then(profile => {
@@ -60,22 +75,31 @@
           console.log('error', err);
         });
     });
-  });
-  
+
+    buildContent({
+      userId: 'U75dbdba8cbbb3cc39bd67d631b28afbe'
+    });
+  })
+
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=invoice';
     url += '&k=' + data.userId;
+
+    $.getJSON(url, function (d) {
+      if (d.error) {
+        $("#content").html('<p class="error">' + d.message + '</p>');
+        return;
+      }
     
-    $.getJSON(url, function(d) {
       var months = d.Months;
       var specialPrize = d.SpecialPrize;
       var grandPrize = d.GrandPrize;
       var firstPrizes = d.FirstPrize; // []
       var additionalPrizes = d.AdditionalPrize; //[]
-      
+
       var fp = '', ap = '';
       firstPrizes.forEach(function (f) {
-        fp += f.substring(0,5) + '<span class="emphasize">' + f.substring(5,8) + '</span><br/>';
+        fp += f.substring(0, 5) + '<span class="emphasize">' + f.substring(5, 8) + '</span><br/>';
       });
       additionalPrizes.forEach(function (a) {
         ap += '<span class="emphasize">' + a + '</span><br/>';
@@ -84,10 +108,10 @@
       var td2 = '<tr><td></td><td>特獎</td><td class="number">' + grandPrize + '</td><td></td></tr>';
       var td3 = '<tr><td></td><td>頭獎</td><td class="number">' + fp + '</td><td></td></tr>';
       var td4 = '<tr><td></td><td>六獎</td><td class="number">' + ap + '</td><td></td></tr>';
-      
+
       var td = td1 + td2 + td3 + td4;
       $('#title').text(months + '月份');
       $('#data').html(td);
     })
-  })
+  }
 </script>
