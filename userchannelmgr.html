@@ -36,7 +36,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" id="container">
     <table class="table">
       <thead>
         <tr class="success">
@@ -71,9 +71,7 @@
     });
         
 
-    buildContent({
-      userId: 'U75dbdba8cbbb3cc39bd67d631b28afbe'
-    });
+    //buildContent({userId: ''});
   })
 
   function buildContent(data) {
@@ -82,7 +80,7 @@
 
     $.getJSON(url, function (services) {
       if (services.error) {
-        $("#content").html('<p class="error">' + services.message + '</p>');
+        $("#container").html('<p class="error">' + services.message + '</p>');
         return;
       }
 
@@ -93,11 +91,13 @@
           tds = '<tr><td>' + s.Service + '</td>';
           tds += '<td class="text-center">' + inService + '</td>';
           tds += '<td class="text-center"><a href="line://app/1615251267-JAX4ORL9"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a></td></tr>';
-         trs += tds;
+          trs += tds;
 		}
       });
+      
       $('#data1').html(trs);
+
     });
-  } 
+  }
 
 </script>
