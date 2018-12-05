@@ -6,21 +6,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <style type="text/css">
-  .box {
-  <!--position:static;-->
-  width:70%;
-  height: 100%;
-  margin: auto;
-  border: 1px solid #9e9b97;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), inset -1px -6px 12px 0.1px #89847e;
-  border-radius: 20px;
-  padding:2% 5% 10% 5%;
-  
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+
 
 .screen {
   height:110px;
@@ -39,6 +25,16 @@
   text-align: right;
 }
 
+.sub2-screen {
+  height:110px;
+  width: 90%;
+  border: 2px solid 7c877f;
+  background: #c7d3c5;	
+  max-width: auto;
+  padding: 10px 5px;
+  font-size: 20px;
+  text-align:center;
+}
 .sub-screen {
   max-width: auto;
   height: auto;
@@ -46,7 +42,6 @@
   font-size: 20px;
   text-align: right;
 }
-
 
 .btn-zero {
   width: 48.3%;
@@ -89,10 +84,15 @@ border-radius: 500px;
   $(document).ready(function() {
     var $mainoutput = $('#output');
     var $suboutput = $('#output2');
+	var $suboutput2 = $('#output3 	');
     var $op = $('#operator');
     var $num1 = $('#num1');
 	var $num2 = $('#num2');
     var $test = $('#test');
+    
+
+   
+	
 	
     var clearData = function() {
         $num1.val('');
@@ -104,11 +104,13 @@ border-radius: 500px;
     var clearOutput = function() {
         $mainoutput.html('');
         $suboutput.html('');
+		$suboutput2.html('');
     }
 
     var digitError = function() {
         $mainoutput.html('0');
         $suboutput.html('Reach Digit Limit');
+		$suboutput2.html('Reach Digit Limit');
         $test.val(0);
     }
 
@@ -126,7 +128,7 @@ border-radius: 500px;
 
         $mainoutput.append($(this).val());
         $suboutput.append($(this).val());
-
+		$suboutput2.append($(this).val());
         if ($mainoutput.html().length > 12) {
             digitError();
         }
@@ -135,6 +137,7 @@ border-radius: 500px;
     $('#ACButton').click(function() {
         $mainoutput.html('');
         $suboutput.html('');
+		$suboutput2.html('');
         clearData();
     });
 /*******************CE function******************************/
@@ -142,6 +145,7 @@ border-radius: 500px;
         if ($mainoutput.html() != '0') {
             $mainoutput.html($mainoutput.html().substring(0, $mainoutput.html().length-1));
             $suboutput.html($suboutput.html().substring(0, $suboutput.html().length-1));
+			 $suboutput2.html($suboutput2.html().substring(0, $suboutput2.html().length-1));
             if ($mainoutput.html() == '') {
                 $mainoutput.html('');
             }
@@ -172,6 +176,7 @@ border-radius: 500px;
           } else {
               $mainoutput.html(newOperator);
               $suboutput.html(result + newOperator);
+			  $suboutput2.html(result + newOperator);
               $num1.val(result);
               $op.val(newOperator);
           }
@@ -180,6 +185,7 @@ border-radius: 500px;
         $op.val(newOperator);
         $mainoutput.html(newOperator);
         $suboutput.append(newOperator);
+		$suboutput2.append(newOperator);
     }
     });
 	
@@ -205,11 +211,11 @@ border-radius: 500px;
         } else {
             $mainoutput.html(result.toFixed(2));
             $suboutput.html(result.toFixed(2));
+			 $suboutput2.html(result.toFixed(2));
             clearData();
         }
-    });
-});
-
+    });	
+});	
   </script>
   <script src="https://code.jquery.com/jquery.js"></script>
 </head>
@@ -229,31 +235,34 @@ border-radius: 500px;
 	  <table class="list" width="100%">
 <tr>
 　  <td><button class="btn" id="ACButton"style="color:white">AC</button></td>
-    <td><button class="btn " id="CEButton"style="color:white">CE</button></td>
-    <td><button class="btn-operate btn " value="/">/</button></td>
-    <td><button class="btn-operate btn " value="*">x</button></td>
+	<td><button class="btn " id="CEButton"style="color:white">CE</button></td>
+	<td></td>
+    <td><button class="btn-operate btn " value="+">+</button></td>
+   
+    
 </tr>
 
 <tr> 
 	<td><button class="nums btn " value="7">7</button></td>
     <td><button class="nums btn " value="8">8</button></td>
     <td><button class="nums btn " value="9">9</button></td>
-    <td><button class="btn-operate btn " value="-">-</button></td>
+	<td><button class="btn-operate btn " value="-">-</button></td>
 </tr>
 <tr> 
 	<td><button class="nums btn " value="4">4</button></td>
     <td><button class="nums btn " value="5">5</button></td>
     <td><button class="nums btn " value="6">6</button></td>
-    <td><button class="btn-operate btn " value="+">+</button></td>
+    <td><button class="btn-operate btn " value="*">x</button></td>
 </tr>
 <tr> 
 	<td><button class="nums btn " value="1">1</button></td>
     <td><button class="nums btn " value="2">2</button></td>
     <td><button class="nums btn " value="3">3</button></td>
-	<td><button class="nums btn-point btn"  value=".">.</button></td>
+	<td><button class="btn-operate btn " value="/">/</button></td>
 </tr>
-    <td  class="zero"><button class="nums btn-zero btn "value="0">0</button></td>
-    <td class=""><button class="btn-equal btn " id="resultButton">=</button></td>
+    <td class="zero"><button class="nums btn-zero btn "value="0">0</button></td>
+	<td><button class="nums btn-point btn"  value=".">.</button></td>
+	<td colspan=2 class="align-center"><button class="btn-equal btn " id="resultButton">=</button></td>
 </table>
     </div>
   </div>
