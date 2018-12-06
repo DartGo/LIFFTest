@@ -12,11 +12,12 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
   <style>
     .channel {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: 10px;
+      padding-right: 10px;
       font-size: 20px;
     }
     p {
@@ -43,21 +44,48 @@
     .m_font {
       font-size: 18px;
     }
+    .loading {
+      text-align: center;
+    }
+    .container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .divider {
+      color: blue;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   </style>
 </head>
 
 <body>
-<div class="container">
+<div class="loading m_font"><br/><h4>載入中...</h4></div>
+<div class="container" style="display:none">
   <div id="accordion">
     <div class="card">
       <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapseOne">
-          天氣預報
-        </a>
-        <span id="county"><span>
+        <table width="100%">
+        	<tr>
+            	<td>
+                  <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                    天氣預報
+                  </a>
+                </td>
+                <td>
+        			<span id="weather_title"><span>
+                </td>
+                <td width="10%">
+                  <span>
+                      <a href="line://app/1615251267-JAX4ORL9"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a>
+                  </span>
+                </td>
+              </tr>
+            </table>
       </div>
-      <div id="collapseOne" class="collapse show" data-parent="#accordion">
-        <div class="card-body"> 
+      <!--<div id="collapseOne" class="collapse show" data-parent="#accordion">-->
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
+          <div class="card-body"> 
         	<div width="100%" class="text-right">
       			<a href="https://www.cwb.gov.tw/m/index.htm"><span class="s_font">氣象局</span></a>
       			<i class="fa fa-external-link" style="font-size:12px;"></i>
@@ -81,7 +109,8 @@
       <div class="card-header">
         <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
         紫外線指數
-      </a>
+      </a> 
+      <span id="uvi_title"><span>
       </div>
       <div id="collapseTwo" class="collapse" data-parent="#accordion">
         <div class="card-body">
@@ -99,6 +128,7 @@
         <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
           空氣品質指數
         </a>
+        <span id="aqi_title"><span>
       </div>
       <div id="collapseThree" class="collapse" data-parent="#accordion">
         <div class="card-body">
@@ -114,7 +144,9 @@
   </div>
 </div>
 <br/>
-<div id="channel" class="channel"></div>
+<div class="channel">
+	<table id="channel" width="100%"></table>
+</div>
 <br/>
 </body>
 
@@ -130,13 +162,16 @@
         console.log('error', err);
       });
     });
-    //buildContent({userId:''});  
+    buildContent({userId:'U75dbdba8cbbb3cc39bd67d631b28afbe'});  
   })
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=userchannels';
 	url += '&k=' + data.userId;
 var links ='';
     $.getJSON(url, function (services) {
+     $('.loading').hide();
+     $('.container').show();
+     
      if (services.error) {
         $("#content").html('<p class="error">' + services.message + '</p>');
         return;
@@ -155,25 +190,31 @@ var links ='';
       
       var tr1 = '<tr><td class="text-right s_font">' + time1 + '</td><td class="align-middle">' + temp1 + '</td><td class="align-middle">' + wea.PoP1 + '%' + '</td></tr>';
 	  var tr2 = '<tr><td class="text-right s_font">' + time2 + '</td><td class="align-middle">' + temp2 + '</td><td class="align-middle">' + wea.PoP2 + '%' + '</td></tr>';
+   
+      $('#weather').html(tr1 + tr2);
+      $('#uvi').html(weather.UVI);
+      $('#aqi').html(weather.AQI);
+      $('#weather_title').html(temp1 + '<span class="divider">|</span>' + wea.PoP1 + '%');
+      $('#uvi_title').html();
+      $('#aqi_title').html();
 
-/*
-      var period1 = wea.TimePeriod1;
-      var period2 = wea.TimePeriod2;
-      var tr1 = '<tr><td class="text-right">' + period1.TimePeriod + '</td><td>' + period1.Temp + '</td><td>' + period1.PoP + '</td></tr>';
-      var tr2 = '<tr><td class="text-right">' + period2.TimePeriod + '</td><td>' + period2.Temp + '</td><td>' + period2.PoP + '</td></tr>';
-*/      
-            $('#weather').html(tr1 + tr2);
-            $('#uvi').html(weather.UVI);
-            $('#aqi').html(weather.AQI);
-            $('#county').html(services.County);
+      //$('#location').html(services.County );
+      document.title = services.County;
 
-      // 使用者訂閱頻道
-      var channels = services.Channels;
-      channels.forEach(function (c) {              
-		links += '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + c.TargetUrl + '">' + c.Service + '</a>';
+      // 訂閱頻道
+      var trs, tds;
+	  var channels = services.Channels;
+      channels.forEach(function (c) {  
+        const inService = c.InService ? '<i class="material-icons" style="font-size:24px;color:black;">check</i>' : ''
+		var link = '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + c.TargetUrl + '">' + c.Service + '</a>';
+        tds = '<tr><td>' + link + '</td>';
+        tds += '<td width="15%" class="text-center"><a href="line://app/1615251267-JAX4ORL9"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a></td></tr>';
+        trs += tds;
       })
-      $('#channel').html(links);
-      
+      $('#channel').html(trs); 
+      //$('#links').bootstrapToggle('on');
+      //$('.links').bootstrapSwitch('state', true); // Add
+
     });
   }
 </script>
