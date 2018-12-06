@@ -236,8 +236,9 @@ var links ='';
         var on = $(this).prop('checked');
         var dictCode = $(this).prop('id');
         if (on && dictCode === 'Invoice') {
+        	var url = 'https://github.com/DartGo/LIFFTest/blob/master/userchannels3.html';
         	setTimeout(function(){
-              window.location.href = 'https://github.com/DartGo/LIFFTest/blob/master/userchannels3.html';
+              window.location.replace(url);
     		  return false;;
 			}, 500);
         }
