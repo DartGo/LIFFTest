@@ -7,17 +7,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
   
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  
   <style>
-    .channel {
+    .container {
       padding-left: 10px;
       padding-right: 10px;
+      padding-top: 10px;
       font-size: 20px;
     }
     p {
@@ -47,10 +54,6 @@
     .loading {
       text-align: center;
     }
-    .container {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
     .divider {
       color: blue;
       padding-left: 10px;
@@ -62,10 +65,11 @@
 <body>
 <div class="loading m_font"><br/><h4>載入中...</h4></div>
 <div class="container" style="display:none">
+  <!--天氣預報 -->
   <div id="accordion">
     <div class="card">
       <div class="card-header">
-        <table width="100%">
+        <table width="100%" id="weather_table">
         	<tr>
             	<td>
                   <a class="card-link" data-toggle="collapse" href="#collapseOne">
@@ -75,7 +79,7 @@
                 <td>
         			<span id="weather_title"><span>
                 </td>
-                <td width="10%">
+                <td class="text-right" width="10%">
                   <span>
                       <a href="line://app/1615251267-JAX4ORL9"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a>
                   </span>
@@ -142,10 +146,25 @@
       </div>
     </div>
   </div>
-</div>
-<br/>
-<div class="channel">
-	<table id="channel" width="100%"></table>
+  
+  <!--服務頻道 -->
+  <br/>
+  <div class="channel">
+      <table width="100%" class="table" id="channel_table">
+        <thead>
+          <tr class="success">
+            <th class="text-center">服務頻道</th>
+            <th class="text-center" width="15%">訂閱</th>
+          </tr>
+        </thead>
+        <tbody id="channel">
+          <tr>
+            <td colspan=2>載入中...</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
 </div>
 <br/>
 </body>
@@ -207,13 +226,22 @@ var links ='';
       channels.forEach(function (c) {  
         const inService = c.InService ? '<i class="material-icons" style="font-size:24px;color:black;">check</i>' : ''
 		var link = '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + c.TargetUrl + '">' + c.Service + '</a>';
-        tds = '<tr><td>' + link + '</td>';
-        tds += '<td width="15%" class="text-center"><a href="line://app/1615251267-JAX4ORL9"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a></td></tr>';
+        tds = '<tr><td class="text-align">' + link + '</td>';
+        tds += '<td class="text-align align-middle"><input class="checkbox" type="checkbox" data-size="large" data-style="ios" id="' + c.DictCode + '" name="' + c.DictCode + '" ></td></tr>';
         trs += tds;
       })
       $('#channel').html(trs); 
-      //$('#links').bootstrapToggle('on');
-      //$('.links').bootstrapSwitch('state', true); // Add
+      $('.checkbox').bootstrapToggle('on');
+      $(".checkbox").on("change", function(){
+        var on = $(this).prop('checked');
+        var dictCode = $(this).prop('id');
+        if (on && dictCode === 'Invoice') {
+        	setTimeout(function(){
+              window.location.href = 'line://app/1615251267-JAX4ORL9';
+    		  return false;;
+			}, 500);
+        }
+      });
 
     });
   }
