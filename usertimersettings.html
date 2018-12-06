@@ -52,12 +52,23 @@
     .loading {
         text-align: center;
     }
+  	.blink{
+		color: rgb (255, 0, 0);		
+		animation: blink 1s infinite;
+	 }
+	 
+	 @keyframes blink{
+		0%{opacity: 1;}
+		25%{opacity: 1;}
+		75%{ opacity: 1;}
+		100%{opacity: 0;}
+	 }
   </style>
 </head>
 
 <body>
   <div class="loading m_font"><br/><h4>載入中...</h4></div>
-  <form method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
+  <form method="post" onsubmit="return closeSelf(this);"  action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
     <input type="hidden" name="userId" value="">
     <input type="hidden" name="requestBy" value="">
     <input type="hidden" name="timer1" value="">
@@ -72,7 +83,7 @@
       <table width="100%">
         <tr>
           <td>訂閱狀況：<input id="status" name="status" type="checkbox" data-size="small" data-style="ios" data-offstyle=""></td>
-          <td class="text-right">記得要更新才會生效喔：<input type="submit" class="btn btn-info" value="更新"></td>
+          <td class="text-right"><span class="blink">記得要更新才會生效喔：</span><input type="submit" class="btn btn-info" value="更新"></td>
         </tr>
       </table>
       <hr>
@@ -211,13 +222,30 @@
 
 
 <script>
+  function closeSelf (f) {
+     f.submit();
+     window.close();
+  }
+  
   $(document).ready(function () {
-    var initCheckBoxes = function () {
-      $(".dropdown-toggle").prop('disabled', !$("#status").prop('checked'));
-      $(".maindata input").prop('disabled', !$("#status").prop('checked'));
-      //$("#status").attr( "checked", 'checked' );
+    // 假如未訂閱，則週，時間與地點均無法選取
+    var initAllItems = function () {
+    	$(".maindata input").prop('disabled', !$("#status").prop('checked'));
+    	$(".dropdown-toggle").prop('disabled', !$("#status").prop('checked') || !chkTimerAndLocation());
+    }; 
+    $("#status").on("change", initAllItems);
+
+        
+    /// 假如未有 weekdays 被選取，則時間與地點均無法選擇
+    var atLeastOneDayIsChecked = false;        
+    function chkTimerAndLocation() {    
+      return $('#w1').prop('checked') || $('#w2').prop('checked') || $('#w3').prop('checked') || 	
+        $('#w4').prop('checked') || $('#w5').prop('checked') || $('#w6').prop('checked') || $('#w7').prop('checked');
     };
-    $("#status").on("change", initCheckBoxes);
+    $('#w1, #w2, #w3, #w4, #w5, #w6, #w7').on('change', function () {
+      $(".dropdown-toggle").prop('disabled', !chkTimerAndLocation());
+    }); 
+    
     $('#dropdown-morning li').on('click', function () {
       $('#timer1').html($(this).text());
       $("input[name=timer1]").val($(this).text());
@@ -234,6 +262,9 @@
       $('#city').html($(this).text());
       $("input[name=city]").val($(this).text());
     });
+    
+
+    
 
     liff.init(function (data) {
       liff.getProfile()
@@ -248,6 +279,7 @@
       userId: 'U75dbdba8cbbb3cc39bd67d631b28afbe'
     });
   })
+  
   function buildContent(data) {
     var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=usertimersettings';
     url += '&k=' + data.userId + '&s=weather';
