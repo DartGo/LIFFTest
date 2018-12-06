@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>崴得升生活小幫手</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    .channel {
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 20px;
+    }
+    p {
+      color: blue;
+    }
+    .error {
+      color: red;
+      text-align: center;
+      font-size: 20px;
+      padding-top: 60px;
+    }
+    .s_font {
+      font-size: 16px;
+    }
+ 
+    .ss_font {
+      font-size: 14px;
+    } 
+    
+    .sss_font {
+      font-size: 12px;
+    } 
+    
+    .m_font {
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+          天氣預報
+        </a>
+        <span id="county"><span>
+      </div>
+      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+        <div class="card-body"> 
+        	<div width="100%" class="text-right">
+      			<a href="https://www.cwb.gov.tw/m/index.htm"><span class="s_font">氣象局</span></a>
+      			<i class="fa fa-external-link" style="font-size:12px;"></i>
+	  		</div>  
+          <table class="table">
+            <thead>
+              <tr class="success">
+                <th class="text-center">時間</th>
+                <th>溫度</th>
+                <th>降雨</th>
+              </tr>
+            </thead>
+            <tbody id="weather">
+              <tr><td colspan="3">載入中...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        紫外線指數
+      </a>
+      </div>
+      <div id="collapseTwo" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+            <div width="100%" class="text-right">
+      			<a href="https://taqm.epa.gov.tw/taqm/tw/default.aspx"><span class="s_font">環保署</span></a>
+      			<i class="fa fa-external-link" style="font-size:12px;"></i>
+	  		</div>  
+            <div id="uvi">
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+          空氣品質指數
+        </a>
+      </div>
+      <div id="collapseThree" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+            <div width="100%" class="text-right">
+      			<a href="http://www.cwb.gov.tw/m/o/UVI.htm"><span class="s_font">氣象局</span></a>
+      			<i class="fa fa-external-link" style="font-size:12px;"></i>
+	  		</div>  
+            <div id="aqi">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<div id="channel" class="channel"></div>
+<br/>
+</body>
+
+</html>
+<script>
+  $(document).ready(function () {
+    liff.init(function (data) {
+      liff.getProfile()
+      .then(profile => {
+        buildContent(profile)
+      })
+      .catch((err) => {
+        console.log('error', err);
+      });
+    });
+    //buildContent({userId:''});  
+  })
+  function buildContent(data) {
+    var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=userchannels';
+	url += '&k=' + data.userId;
+var links ='';
+    $.getJSON(url, function (services) {
+     if (services.error) {
+        $("#content").html('<p class="error">' + services.message + '</p>');
+        return;
+      }
+      
+      // weather, aqi, uvi
+      var weather = services.Weather;
+      var wea = weather.WEA;
+      
+      var time1 = wea.StartTime1.substring(5,16) + '<br/>~' + wea.EndTime1.substring(5,16);
+      var temp1 = wea.Min1 + '-' + wea.Max1 + '°C'; 
+
+      
+      var time2 = wea.StartTime2.substring(5,16) + '<br/>~' + wea.EndTime2.substring(5,16);
+      var temp2 = wea.Min2 + '-' + wea.Max2 + '°C'; 
+      
+      var tr1 = '<tr><td class="text-right s_font">' + time1 + '</td><td class="align-middle">' + temp1 + '</td><td class="align-middle">' + wea.PoP1 + '%' + '</td></tr>';
+	  var tr2 = '<tr><td class="text-right s_font">' + time2 + '</td><td class="align-middle">' + temp2 + '</td><td class="align-middle">' + wea.PoP2 + '%' + '</td></tr>';
+
+/*
+      var period1 = wea.TimePeriod1;
+      var period2 = wea.TimePeriod2;
+      var tr1 = '<tr><td class="text-right">' + period1.TimePeriod + '</td><td>' + period1.Temp + '</td><td>' + period1.PoP + '</td></tr>';
+      var tr2 = '<tr><td class="text-right">' + period2.TimePeriod + '</td><td>' + period2.Temp + '</td><td>' + period2.PoP + '</td></tr>';
+*/      
+            $('#weather').html(tr1 + tr2);
+            $('#uvi').html(weather.UVI);
+            $('#aqi').html(weather.AQI);
+            $('#county').html(services.County);
+
+      // 使用者訂閱頻道
+      var channels = services.Channels;
+      channels.forEach(function (c) {              
+		links += '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + c.TargetUrl + '">' + c.Service + '</a>';
+      })
+      $('#channel').html(links);
+      
+    });
+  }
+</script>
