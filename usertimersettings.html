@@ -68,7 +68,7 @@
 
 <body>
   <div class="loading m_font"><br/><h4>載入中...</h4></div>
-  <form method="post" onsubmit="return closeSelf(this);"  action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
+  <form method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
     <input type="hidden" name="userId" value="">
     <input type="hidden" name="requestBy" value="">
     <input type="hidden" name="timer1" value="">
@@ -106,9 +106,7 @@
           <tr>
             <td class="text-center">週六<br /><input id="w6" name="w6" type="checkbox" data-size="small" data-style="ios" disabled></td>
             <td class="text-center">週日<br /><input id="w7" name="w7" type="checkbox" data-size="small" data-style="ios" disabled></td>
-            <td class="text-center"></td>
-            <td class="text-center"></td>
-            <td class="text-center"></td>
+            <td class="text-center" colspan="3"></td>
           </tr>
         </table>
         <hr>
@@ -221,12 +219,7 @@
 </html>
 
 
-<script>
-  function closeSelf (f) {
-     f.submit();
-     window.close();
-  }
-  
+<script>  
   $(document).ready(function () {
     // 假如未訂閱，則週，時間與地點均無法選取
     var initAllItems = function () {
@@ -350,8 +343,7 @@
       $("input[name=userId]").val(data.userId);
       
       $('form').submit(function (e) {
-      	opener.location.reload(true);
-        self.close();
+      	 $('#container').html('<h3 class="text-center">資料更新中...</h3>');
       });
       
 
