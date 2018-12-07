@@ -350,8 +350,8 @@
       $("input[name=userId]").val(data.userId);
       
       $('form').submit(function (e) {
-      }).done(function(data) {
-        alert(data);
+      	opener.location.reload(true);
+        self.close();
       });
       
 
