@@ -90,8 +90,8 @@
         			<span id="weather_title"><span>
                 </td>
                 <td class="text-right" width="10%">
-                  <span>
-                      <a href="https://dartgo.github.io/LIFFTest/usertimersettings.html"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a>
+                  <span id="edit_weather">
+                      <!--<a href="https://dartgo.github.io/LIFFTest/usertimersettings.html">--><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a>
                   </span>
                 </td>
               </tr>
@@ -243,6 +243,14 @@ var links ='';
         trs += tds;
       })
       $('#channel').html(trs); 
+      
+      $('#edit_weather').on('click', function() {
+      	liff.openWindow({
+          url:'https://dartgo.github.io/LIFFTest/usertimersettings.html',
+          external: true
+        });
+      });
+      
       /*$('.checkbox').bootstrapToggle('on');
       $(".checkbox").on("change", function(){
         var on = $(this).prop('checked');
