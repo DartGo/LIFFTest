@@ -8,6 +8,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <style type="text/css">
+        .box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            background-color: #000000;
+        }
+
         .screen {
             height: 110px;
             width: 90%;
@@ -25,17 +33,6 @@
             text-align: right;
         }
 
-        .sub2-screen {
-            height: 110px;
-            width: 90%;
-            border: 2px solid 7c877f;
-            background: #c7d3c5;
-            max-width: auto;
-            padding: 10px 5px;
-            font-size: 20px;
-            text-align: center;
-        }
-
         .sub-screen {
             max-width: auto;
             height: auto;
@@ -44,166 +41,242 @@
             text-align: right;
         }
 
-        .btn-zero {
-            width: 48.3%;
-            margin-right: 2px;
-            border-radius: 500px;
-        }
-
-        .btn-equal {
-            width: 48%;
-            border-radius: 500px;
-        }
-
         td {
             text-align: center;
-        }
-
-        .nums {
-            border-radius: 500px;
-        }
-
-        .btn-operate {
-            border-radius: 500px;
+            color: white
         }
 
         .btn {
-            font-size: 20px;
+            font-size: 30px;
             margin: 5px 5px 0px 5px;
             padding: 0px 5px 0px 5px;
             width: 50px;
             height: 50px;
             border-radius: 50%;
             text-align: center;
-            background-color: white;
-            box-shadow: 1px 2px #666;
+            background-color: rgb(58, 56, 56);
+        }
+
+        .btn-operate {
+            background-color: orange;
         }
 
         #ACButton {
+            font-size: 25px;
             background-color: red;
+            color: white;
         }
 
         #CEButton {
-            background-color: orange;
+            font-size: 25px;
+            background-color: red;
+            color: white;
+        }
+
+        #point {
+            color: white
+        }
+
+        #result {
+            color: white
+        }
+
+        #plus {
+            color: white
+        }
+
+        #minus {
+            color: white
+        }
+
+        #multiply {
+            color: white
+        }
+
+        #divided {
+            color: white
+        }
+
+        #one {
+            color: white;
+        }
+
+        #two {
+            color: white;
+        }
+
+        #three {
+            color: white;
+        }
+
+        #four {
+            color: white;
+        }
+
+        #five {
+            color: white;
+        }
+
+        #six {
+            color: white;
+        }
+
+        #seven {
+            color: white;
+        }
+
+        #eight {
+            color: white;
+        }
+
+        #nine {
+            color: white;
+        }
+
+        #zero {
+            color: white;
         }
     </style>
 
-    <script language="JavaScript">
-        $(document).ready(function () {
-            var $mainoutput = $('#output');
-            var $suboutput = $('#output2');
-            var $suboutput2 = $('#output3 	');
-            var $op = $('#operator');
-            var $num1 = $('#num1');
-            var $num2 = $('#num2');
-            var $test = $('#test');
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="screen">
+            <div class="main-screen" id="output"></div>
+            <div class="sub-screen" id="output2"></div>
+        </div>
+        <input type="hidden" id="num1">
+        <input type="hidden" id="operator">
+        <input type="hidden" id="num2">
+        <input type="hidden" id="test">
+        <table class="list" width="100%">
+            <tr>
+                　 <td><button class="btn" id="ACButton">AC</button></td>
+                <td><button class="btn " id="CEButton">CE</button></td>
+            </tr>
+            <tr>
+                <td><button class="nums btn " value="7" id="seven">7</button></td>
+                <td><button class="nums btn " value="8" id="eight">8</button></td>
+                <td><button class="nums btn " value="9" id="nine">9</button></td>
+                <td><button class="btn-operate btn " value="+" id="plus">+</button></td>
+            </tr>
+            <tr>
+                <td><button class="nums btn " value="4" id="four">4</button></td>
+                <td><button class="nums btn " value="5" id="five">5</button></td>
+                <td><button class="nums btn " value="6" id="six">6</button></td>
+                <td><button class="btn-operate btn " value="-" id="minus">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="nums btn " value="1" id="one">1</button></td>
+                <td><button class="nums btn " value="2" id="two">2</button></td>
+                <td><button class="nums btn " value="3" id="three">3</button></td>
+                <td><button class="btn-operate btn " value="*" id="multiply">x</button></td>
+            </tr>
+            <tr>
+                <td class="zero"><button class="nums btn-zero btn " value="0" id="zero">0</button></td>
+                <td><button class="nums btn-point btn" value="." id="point">.</button></td>
+                <td class=""><button class="btn-equal btn " id="result">=</button></td>
+                <td><button class="btn-operate btn " value="/" id="divided">/</button></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+</body>
+
+</html>
 
 
-
-
-
-            var clearData = function () {
-                $num1.val('');
-                $op.val('');
-                $num2.val('');
-                $test.val('');
-            };
-
-            var clearOutput = function () {
+<!------------------js-------------------->
+<script language="JavaScript">
+    $('.btn').hover(function () {
+        $(this).stop().animate({ fontSize: '35px' }, 100);
+    },
+        function () {
+            $(this).stop().animate({ fontSize: '30px' }, 100);
+        });
+    $('#ACButton').hover(function () {
+        $(this).stop().animate({ fontSize: '30px' }, 100);
+    },
+        function () {
+            $(this).stop().animate({ fontSize: '25px' }, 100);
+        });
+    $('#CEButton').hover(function () {
+        $(this).stop().animate({ fontSize: '30px' }, 100);
+    },
+        function () {
+            $(this).stop().animate({ fontSize: '25px' }, 100);
+        });
+    $(document).ready(function () {
+        var $mainoutput = $('#output');
+        var $suboutput = $('#output2');
+        var $suboutput2 = $('#output3');
+        var $op = $('#operator');
+        var $num1 = $('#num1');
+        var $num2 = $('#num2');
+        var $test = $('#test');
+        var clearData = function () {
+            $num1.val('');
+            $op.val('');
+            $num2.val('');
+            $test.val('');
+        };
+        var clearOutput = function () {
+            $mainoutput.html('');
+            $suboutput.html('');
+            $suboutput2.html('');
+        }
+        var digitError = function () {
+            $mainoutput.html('0');
+            $suboutput.html('Reach Digit Limit');
+            $suboutput2.html('Reach Digit Limit');
+            $test.val(0);
+        }
+        $('.nums').click(function () {
+            if (('+-*/').indexOf($mainoutput.html()) != -1) {
                 $mainoutput.html('');
-                $suboutput.html('');
-                $suboutput2.html('');
             }
-
-            var digitError = function () {
-                $mainoutput.html('0');
-                $suboutput.html('Reach Digit Limit');
-                $suboutput2.html('Reach Digit Limit');
-                $test.val(0);
+            // avoid multiple dot
+            if ($(this).val() == '.' && ($mainoutput.html()).indexOf('.') != -1) return;
+            if ($test.val() !== '') {
+                clearOutput()
+                clearData();
             }
-
-            $('.nums').click(function () {
-                if (('+-*/').indexOf($mainoutput.html()) != -1) {
+            $mainoutput.append($(this).val());
+            $suboutput.append($(this).val());
+            $suboutput2.append($(this).val());
+            if ($mainoutput.html().length > 12) {
+                digitError();
+            }
+        });
+        /*******************AC function******************************/
+        $('#ACButton').click(function () {
+            $mainoutput.html('');
+            $suboutput.html('');
+            $suboutput2.html('');
+            clearData();
+        });
+        /*******************CE function******************************/
+        $('#CEButton').click(function () {
+            if ($mainoutput.html() != '0') {
+                $mainoutput.html($mainoutput.html().substring(0, $mainoutput.html().length - 1));
+                $suboutput.html($suboutput.html().substring(0, $suboutput.html().length - 1));
+                $suboutput2.html($suboutput2.html().substring(0, $suboutput2.html().length - 1));
+                if ($mainoutput.html() == '') {
                     $mainoutput.html('');
                 }
-                // avoid multiple dot
-                if ($(this).val() == '.' && ($mainoutput.html()).indexOf('.') != -1) return;
-
-                if ($test.val() !== '') {
-                    clearOutput()
-                    clearData();
-                }
-
-                $mainoutput.append($(this).val());
-                $suboutput.append($(this).val());
-                $suboutput2.append($(this).val());
-                if ($mainoutput.html().length > 12) {
-                    digitError();
-                }
-            });
-            /*******************AC function******************************/
-            $('#ACButton').click(function () {
-                $mainoutput.html('');
-                $suboutput.html('');
-                $suboutput2.html('');
-                clearData();
-            });
-            /*******************CE function******************************/
-            $('#CEButton').click(function () {
-                if ($mainoutput.html() != '0') {
-                    $mainoutput.html($mainoutput.html().substring(0, $mainoutput.html().length - 1));
-                    $suboutput.html($suboutput.html().substring(0, $suboutput.html().length - 1));
-                    $suboutput2.html($suboutput2.html().substring(0, $suboutput2.html().length - 1));
-                    if ($mainoutput.html() == '') {
-                        $mainoutput.html('');
-                    }
-                }
-            });
-            /*******************Operate function******************************/
-            $('.btn-operate').click(function () {
-                var newOperator = $(this).val();
-                if ($num1.val() !== '' && ('+-*/').indexOf($num1.val()) == -1 && $op.val() !== '') {
-                    $num2.val($mainoutput.html());
-                    if (('+-*/').indexOf($num2.val()) != -1) return;
-                    var number1 = ($num1.val());
-                    var operator = $op.val();
-                    var number2 = ($num2.val());
-                    var result;
-                    if (operator == '+') {
-                        result = number1 + number2;
-                    } else if (operator == '-') {
-                        result = number1 - number2;
-                    } else if (operator == '*') {
-                        result = number1 * number2;
-                    } else if (operator == '/') {
-                        result = parseFloat(number1 / number2);
-                    }
-
-                    if (result.toString().length > 12) {
-                        digitError();
-                    } else {
-                        $mainoutput.html(newOperator);
-                        $suboutput.html(result + newOperator);
-                        $suboutput2.html(result + newOperator);
-                        $num1.val(result);
-                        $op.val(newOperator);
-                    }
-                } else {
-                    $num1.val($mainoutput.html());
-                    $op.val(newOperator);
-                    $mainoutput.html(newOperator);
-                    $suboutput.append(newOperator);
-                    $suboutput2.append(newOperator);
-                }
-            });
-
-            /*******************Result function******************************/
-            $('#resultButton').click(function () {
-                if ($mainoutput.html() === '' || ('+-*/').indexOf($mainoutput.html()) != -1) return;
+            }
+        });
+        /*******************Operate function******************************/
+        $('.btn-operate').click(function () {
+            var newOperator = $(this).val();
+            if ($num1.val() !== '' && ('+-*/').indexOf($num1.val()) == -1 && $op.val() !== '') {
                 $num2.val($mainoutput.html());
-                var number1 = parseFloat($num1.val());
+                if (('+-*/').indexOf($num2.val()) != -1) return;
+                var number1 = ($num1.val());
                 var operator = $op.val();
-                var number2 = parseFloat($num2.val());
+                var number2 = ($num2.val());
                 var result;
                 if (operator == '+') {
                     result = number1 + number2;
@@ -214,74 +287,49 @@
                 } else if (operator == '/') {
                     result = parseFloat(number1 / number2);
                 }
-                if (result.toString().length > 24) {
+                if (result.toString().length > 12) {
                     digitError();
                 } else {
-                    $mainoutput.html(result.toFixed(2));
-                    $suboutput.html(result.toFixed(2));
-                    $suboutput2.html(result.toFixed(2));
-                    clearData();
+                    $mainoutput.html(newOperator);
+                    $suboutput.html(result + newOperator);
+                    $suboutput2.html(result + newOperator);
+                    $num1.val(result);
+                    $op.val(newOperator);
                 }
-            });
-        });	
-    </script>
-    <script src="https://code.jquery.com/jquery.js"></script>
-</head>
-
-<body>
-
-    <div class="box">
-        <div class="screen">
-            <div class="main-screen" id="output"></div>
-            <div class="sub-screen" id="output2"></div>
-        </div>
-
-        <input type="hidden" id="num1">
-        <input type="hidden" id="operator">
-        <input type="hidden" id="num2">
-        <input type="hidden" id="test">
-
-        <table class="list" width="100%">
-            <tr>
-                　 <td><button class="btn" id="ACButton" style="color:white">AC</button></td>
-                <td><button class="btn " id="CEButton" style="color:white">CE</button></td>
-                <td></td>
-                <td><button class="btn-operate btn " value="+">+</button></td>
-
-
-            </tr>
-
-            <tr>
-                <td><button class="nums btn " value="7">7</button></td>
-                <td><button class="nums btn " value="8">8</button></td>
-                <td><button class="nums btn " value="9">9</button></td>
-                <td><button class="btn-operate btn " value="-">-</button></td>
-            </tr>
-            <tr>
-                <td><button class="nums btn " value="4">4</button></td>
-                <td><button class="nums btn " value="5">5</button></td>
-                <td><button class="nums btn " value="6">6</button></td>
-                <td><button class="btn-operate btn " value="*">x</button></td>
-            </tr>
-            <tr>
-                <td><button class="nums btn " value="1">1</button></td>
-                <td><button class="nums btn " value="2">2</button></td>
-                <td><button class="nums btn " value="3">3</button></td>
-                <td><button class="btn-operate btn " value="/">/</button></td>
-            </tr>
-            <tr>
-                <td class="zero"><button class="nums btn-zero btn " value="0">0</button></td>
-                <td><button class="nums btn-point btn" value=".">.</button></td>
-                <td></td>
-                <td><button class="btn-equal btn " id="resultButton">=</button></td>
-            </tr>
-        </table>
-    </div>
-    <br>
-    <footer class="text-center">
-        <p>Posted by: Weideson</p>
-    </footer>
-
-</body>
-
-</html>
+            } else {
+                $num1.val($mainoutput.html());
+                $op.val(newOperator);
+                $mainoutput.html(newOperator);
+                $suboutput.append(newOperator);
+                $suboutput2.append(newOperator);
+            }
+        });
+        /*******************Result function******************************/
+        $('#result').click(function () {
+            if ($mainoutput.html() === '' || ('+-*/').indexOf($mainoutput.html()) != -1) return;
+            $num2.val($mainoutput.html());
+            var number1 = parseFloat($num1.val());
+            var operator = $op.val();
+            var number2 = parseFloat($num2.val());
+            var result;
+            if (operator == '+') {
+                result = number1 + number2;
+            } else if (operator == '-') {
+                result = number1 - number2;
+            } else if (operator == '*') {
+                result = number1 * number2;
+            } else if (operator == '/') {
+                result = parseFloat(number1 / number2);
+            }
+            if (result.toString().length > 24) {
+                digitError();
+            } else {
+                $mainoutput.html(result.toFixed(2));
+                $suboutput.html(result.toFixed(2));
+                $suboutput2.html(result.toFixed(2));
+                clearData();
+            }
+        });
+    });
+</script>
+<script src="https://code.jquery.com/jquery.js"></script>
