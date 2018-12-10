@@ -9,11 +9,12 @@
   <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <style>
     div {
       padding-left: 5px;
       padding-right: 5px;
-      font-size: 20px;
     }
 
     p {
@@ -25,6 +26,13 @@
       text-align: center;
       font-size: 20px;
       padding-top: 60px;
+    }
+    .sss_font {
+      font-size: 12px;
+    } 
+    
+    .m_font {
+      font-size: 18px;
     }
   </style>
 </head>
@@ -46,7 +54,7 @@
         console.log('error', err);
       });
     });
-    //buildContent({userId:''});
+    buildContent({userId:'U75dbdba8cbbb3cc39bd67d631b28afbe'});  
   })
 
   function buildContent(data) {
@@ -61,11 +69,11 @@
       }
       services.forEach(function (s) { 
       	if (s.Status) {
-	  links += '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + s.TargetUrl + '">' + s.Service + '</a>';
+	  links += '<a class="btn btn-info btn-block m_font" href="' + s.TargetUrl + '">' + s.Service + ' <i class="fa fa-external-link sss_font"></i></a>';
 	}
       })
       $('#content').html(links);
-      
+       
     });
   }
 </script>
