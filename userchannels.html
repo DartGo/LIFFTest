@@ -25,7 +25,7 @@
       padding-left: 10px;
       padding-right: 10px;
       padding-top: 10px;
-      font-size: 20px;
+      font-size: 16px;
     }
     p {
       color: blue;
@@ -65,15 +65,14 @@
     }
     .location {
       padding: 10px; 
-      font-size: 16px;
     }
   </style>
 </head>
 
 <body>
 <div id="content"></div>
-<div class="location"></div>
-<div class="loading m_font"><br/><h4>載入中...</h4></div>
+<div class="location s_font"></div>
+<div class="loading s_font"><br/><h4>載入中...</h4></div>
 <div class="container" style="display:none">
   <!--天氣預報 -->
   <div id="accordion">
@@ -91,7 +90,7 @@
                 </td>
                 <td class="text-right" width="10%">
                   <span id="edit_weather">
-                      <a href="https://dartgo.github.io/LIFFTest/usertimersettings.html"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a>
+                      <a href="https://dartgo.github.io/LIFFTest/usertimersettings.html"><i class="material-icons">edit</i></a>
                   </span>
                 </td>
               </tr>
@@ -101,7 +100,7 @@
         <div id="collapseOne" class="collapse" data-parent="#accordion">
           <div class="card-body"> 
         	<div width="100%" class="text-right">
-      			<a href="https://www.cwb.gov.tw/m/index.htm"><span class="s_font">氣象局</span></a>
+      			<a href="https://www.cwb.gov.tw/m/index.htm"><span class="ss_font">氣象局</span></a>
       			<i class="fa fa-external-link" style="font-size:12px;"></i>
 	  		</div>  
           <table class="table">
@@ -129,7 +128,7 @@
       <div id="collapseTwo" class="collapse" data-parent="#accordion">
         <div class="card-body">
             <div width="100%" class="text-right">
-      			<a href="https://taqm.epa.gov.tw/taqm/tw/default.aspx"><span class="s_font">環保署</span></a>
+      			<a href="https://taqm.epa.gov.tw/taqm/tw/default.aspx"><span class="ss_font">環保署</span></a>
       			<i class="fa fa-external-link" style="font-size:12px;"></i>
 	  		</div>  
             <div id="uvi">
@@ -147,7 +146,7 @@
       <div id="collapseThree" class="collapse" data-parent="#accordion">
         <div class="card-body">
             <div width="100%" class="text-right">
-      			<a href="http://www.cwb.gov.tw/m/o/UVI.htm"><span class="s_font">氣象局</span></a>
+      			<a href="http://www.cwb.gov.tw/m/o/UVI.htm"><span class="ss_font">氣象局</span></a>
       			<i class="fa fa-external-link" style="font-size:12px;"></i>
 	  		</div>  
             <div id="aqi">
@@ -235,11 +234,11 @@ var links ='';
       var trs, tds;
 	  var channels = services.Channels;
       channels.forEach(function (c) {  
-        const inService = c.InService ? '<i class="material-icons" style="font-size:24px;color:black;">check</i>' : ''
-		var link = '<a style="font-size:24px;" class="btn btn-info btn-block" href="' + c.TargetUrl + '">' + c.Service + ' <i class="fa fa-external-link" style="font-size:12px;"></i></a>';
+        const inService = c.InService ? '<i class="material-icons s-font">check</i>' : ''
+		var link = '<a class="btn btn-info btn-block m-font" href="' + c.TargetUrl + '">' + c.Service + ' <i class="fa fa-external-link sss_font"></i></a>';
         tds = '<tr><td>' + link + '</td><td>' + inService + '</td>';
         //tds += '<td class="text-align align-middle"><input class="checkbox" type="checkbox" data-size="large" data-style="ios" id="' + c.DictCode + '" name="' + c.DictCode + '" ></td></tr>';
-        tds += '<td><a href="https://dartgo.github.io/LIFFTest/usertimersettings.html"><i class="material-icons" style="font-size:24px;color:blue;">edit</i></a></td>';
+        tds += '<td><a href="https://dartgo.github.io/LIFFTest/usertimersettings.html"><i class="material-icons s-font">edit</i></a></td>';
         trs += tds;
       })
       $('#channel').html(trs); 
