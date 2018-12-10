@@ -82,7 +82,7 @@
       </div>
       <table width="100%">
         <tr>
-          <td>訂閱狀況：<input id="status" name="status" type="checkbox" data-size="small" data-style="ios" data-offstyle=""></td>
+          <td>訂閱狀況：<input id="status" name="status" type="checkbox" data-size="small" data-style="ios"></td>
           <td class="text-right"><span class="blink">更新才會生效喔：</span><input type="submit" class="btn btn-info" value="更新"></td>
         </tr>
       </table>
@@ -286,9 +286,9 @@
         return;
       };
 
-	  // 預設為開啟
+      // 天氣預報不開放使用者取消訂閱功能
       $('#status').bootstrapToggle('on');
-
+      $('#status').prop('disabled', true);
 
       /// 週
       var weekdays = service.Weekdays || [];
@@ -342,9 +342,12 @@
       $("input[name=requestBy]").val('weather');
       $("input[name=userId]").val(data.userId);
       
-      //$('form').submit(function (e) {
-        //alert('資料更新中...');      
-      //});
+      // 在 from submit 前將 訂閱狀況 disabled 取消，否則 server 會出現 undefined，連同週，時間等項目 也會 undefined
+      $('form').submit(function (e) {
+        //e.preventDefault();
+      	$('#status').prop('disabled', false);  
+        //$(this).submit();
+      });
       
 
 
