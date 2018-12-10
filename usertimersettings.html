@@ -13,6 +13,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <style>
     .error {
@@ -82,7 +85,12 @@
       </div>
       <table width="100%">
         <tr>
-          <td>訂閱狀況：<input id="status" name="status" type="checkbox" data-size="small" data-style="ios"></td>
+          <td>訂閱狀況：
+            <!--預設天氣預報為必訂項目，不提供取消訂閱功能-->
+            <!--<input id="status" name="status" type="checkbox" data-size="small" data-style="ios">-->
+          	<span class="m_font"> &check;</span>
+            <input type="hidden" name="status" value="on">
+		  </td>
           <td class="text-right"><span class="blink">更新才會生效喔：</span><input type="submit" class="btn btn-info" value="更新"></td>
         </tr>
       </table>
@@ -222,11 +230,13 @@
 <script>  
   $(document).ready(function () {
     // 假如未訂閱，則週，時間與地點均無法選取
-    var initAllItems = function () {
+    /*var initAllItems = function () {
     	$(".maindata input").prop('disabled', !$("#status").prop('checked'));
     	$(".dropdown-toggle").prop('disabled', !$("#status").prop('checked') || !chkTimerAndLocation());
     }; 
-    $("#status").on("change", initAllItems);
+    $("#status").on("change", initAllItems);*/
+    $(".maindata input").prop('disabled', false);
+    $(".dropdown-toggle").prop('disabled', !chkTimerAndLocation());
 
         
     /// 假如未有 weekdays 被選取，則時間與地點均無法選擇
@@ -343,11 +353,9 @@
       $("input[name=userId]").val(data.userId);
       
       // 在 from submit 前將 訂閱狀況 disabled 取消，否則 server 會出現 undefined，連同週，時間等項目 也會 undefined
-      $('form').submit(function (e) {
-        //e.preventDefault();
-      	$('#status').prop('disabled', false);  
-        //$(this).submit();
-      });
+      //$('form').submit(function (e) {
+      	//$('#status').prop('disabled', false);  
+      //});
       
 
 
