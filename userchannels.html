@@ -18,7 +18,6 @@
   <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
   <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
   
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   
   <style>
@@ -232,11 +231,11 @@ var links ='';
       var trs, tds;
 	  var channels = services.Channels;
       channels.forEach(function (c) {  
-        const inService = c.InService ? '<i class="material-icons s-font">check</i>' : ''
-		var link = '<a class="btn btn-info btn-block m-font" href="' + c.TargetUrl + '">' + c.Service + ' <i class="fa fa-external-link sss_font"></i></a>';
+        const inService = c.InService ? '<span>&#10003;</span>' : '<span>&#10005;</span>'
+		var link = '<a class="btn btn-info btn-block m_font" href="' + c.TargetUrl + '">' + c.Service + ' <i class="fa fa-external-link sss_font"></i></a>';
         tds = '<tr><td>' + link + '</td><td>' + inService + '</td>';
         //tds += '<td class="text-align align-middle"><input class="checkbox" type="checkbox" data-size="large" data-style="ios" id="' + c.DictCode + '" name="' + c.DictCode + '" ></td></tr>';
-        tds += '<td><a href="https://dartgo.github.io/LIFFTest/userinvoicetimersettings.html"><i class="material-icons s-font">edit</i></a></td>';
+        tds += '<td><a href="https://dartgo.github.io/LIFFTest/userinvoicetimersettings.html"><i class="material-icons">edit</i></a></td>';
         trs += tds;
       })
       $('#channel').html(trs); 
