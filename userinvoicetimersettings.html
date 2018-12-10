@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>崴得升生活小幫手</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <style>
+        .error {
+      color: red;
+      text-align: center;
+      font-size: 20px;
+      padding-top: 60px;
+    }
+
+    .s_font {
+      font-size: 16px;
+    }
+
+    .ss_font {
+      font-size: 14px;
+    }
+
+    .sss_font {
+      font-size: 12px;
+    }
+
+    .m_font {
+      font-size: 18px;
+    }
+    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+    .toggle.ios .toggle-handle { border-radius: 20px; }
+    .dropdown-menu {
+      width: 10px !important;
+	}
+    td {
+      padding-top: 10px; 
+    }
+    .subtitle {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .loading {
+      text-align: center;
+    }
+  	.blink{
+      color: rgb (255, 0, 0);		
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink{
+      0%{opacity: 1;}
+      25%{opacity: 1;}
+      75%{ opacity: 1;}
+      100%{opacity: 0;}
+	 }
+  </style>
+</head>
+
+<body>
+    <div class="loading m_font"><br />
+        <h4>載入中...</h4>
+    </div>
+    <form method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
+        <input type="hidden" name="userId" value="">
+        <input type="hidden" name="requestBy" value="">
+        <input type="hidden" name="timer1" value="">
+        <input type="hidden" name="timer2" value="">
+        <input type="hidden" name="timer3" value="">
+        <input type="hidden" name="city" value="">
+
+        <div class="container" id="container" style="display:none">
+            <div class="text-center">
+                <h4>統一發票通知時間設定</h4>
+            </div>
+            <table width="100%">
+                <tr>
+                    <td>訂閱狀況：
+                        <input id="status" name="status" type="checkbox" data-size="small" data-style="ios">
+                    </td>
+                    <td class="text-right"><span class="blink">更新才會生效喔：</span><input type="submit" class="btn btn-info"
+                            value="更新"></td>
+                </tr>
+            </table>
+            <hr>
+            <span class='subtitle'>時間</span> 請選擇要觸發的時間（最多兩次，均為整點，有前後 15 分鐘的誤差），配合統一發票開獎時間，將於每單月 25 號 14：00 至 22：00 通知。
+            <p></p>
+            <table width="100%">
+                <tr>
+                    <td id="timer1" class="text-center"></td>
+                    <td id="timer2" class="text-center"></td>
+                    <td id="timer3" class="text-center"></td>
+                </tr>
+                <tr>
+                    <td id="dropdown-morning" class="text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
+                                disabled>上午
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="#">不設定</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td id="dropdown-afternoon" class="text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">下午
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="#">不設定</a></li>
+                                <li class=""><a href="#">14:00</a></li>
+                                <li class=""><a href="#">15:00</a></li>
+                                <li class=""><a href="#">16:00</a></li>
+                                <li class=""><a href="#">17:00</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td id="dropdown-night" class="text-center">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">晚上
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li class=""><a href="#">不設定</a></li>
+                                <li class=""><a href="#">18:00</a></li>
+                                <li class=""><a href="#">19:00</a></li>
+                                <li class=""><a href="#">20:00</a></li>
+                                <li class=""><a href="#">21:00</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr>
+        </div> <!-- maindata -->
+        <!--container-->
+    </form>
+</body>
+
+</html>
+
+
+<script>
+    $(document).ready(function () {
+        // 假如未訂閱，則週，時間與地點均無法選取
+        // invoice 限定僅可以設定下午/晚上
+        var initAllItems = function () {
+            $("#dropdown-afternoon .dropdown-toggle, #dropdown-night .dropdown-toggle").prop('disabled', !$("#status").prop('checked'));
+        };
+        $("#status").on("change", initAllItems);
+
+        liff.init(function (data) {
+            liff.getProfile()
+                .then(profile => {
+                    buildContent(profile)
+                })
+                .catch((err) => {
+                    console.log('error', err);
+                });
+        });
+        buildContent({
+            userId: 'U75dbdba8cbbb3cc39bd67d631b28afbe'
+        });
+    })
+
+    function buildContent(data) {
+        var url = 'https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec?q=usertimersettings';
+        url += '&k=' + data.userId + '&s=invoice';
+
+        $.getJSON(url, function (service) {
+            $('.loading').hide();
+            $('#container').show();
+
+            if (service.error) {
+                $("#container").html('<p class="error">' + service.message + '</p>');
+                return;
+            };
+
+            $('#status').bootstrapToggle('on');
+
+            /// 時
+            var hours = service.Hours;
+            hours.map(function (h) {
+                var intH = parseInt(h);
+                if (intH <= 10) h = '0' + h;
+                var strH = h + ':00';
+
+                if (intH <= 11 && intH >= 6) {
+                    $('#timer1').html(strH);
+                    $("input[name=timer1]").val(strH);
+                } else if (intH <= 17 && intH >= 12) {
+                    $('#timer2').html(strH);
+                    $("input[name=timer2]").val(strH);
+                } else if (intH <= 23 && intH >= 18) {
+                    $('#timer3').html(strH);
+                    $("input[name=timer3]").val(strH);
+                }
+            });
+            
+            $('#dropdown-morning li').on('click', function () {
+              $('#timer1').html($(this).text());
+              $("input[name=timer1]").val($(this).text());
+            });
+            $('#dropdown-afternoon li').on('click', function () {
+              $('#timer2').html($(this).text());
+              $("input[name=timer2]").val($(this).text());
+            });
+            $('#dropdown-night li').on('click', function () {
+              $('#timer3').html($(this).text());
+              $("input[name=timer3]").val($(this).text());
+            });
+
+            /// 
+            $("input[name=requestBy]").val('invoice');
+            $("input[name=userId]").val(data.userId);
+
+            // 在 from submit 前將 訂閱狀況 disabled 取消，否則 server 會出現 undefined，連同週，時間等項目 也會 undefined
+            //$('form').submit(function (e) {
+            //$('#status').prop('disabled', false);  
+            //});
+
+
+
+        });
+    }
+</script>
