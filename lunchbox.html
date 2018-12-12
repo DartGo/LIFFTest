@@ -2,298 +2,288 @@
 <html lang="en">
 
 <head>
-  <title>崴得升生活小幫手</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>崴得升生活小幫手</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <style>
-    .price {color: red;}
+    <style>
+        .price {color: red;}
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h2 class="text-center">訂便當問卷調查</h2>
-    <!--<form class="form-horizontal" method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">-->
-      
-    <form class="form-horizontal" id="form">
-      <input type="hidden" name="userId" value="">
-      <input type="hidden" name="requestBy" value="">
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="phone">連絡電話:</label>
-        <div class="col-sm-4">
-          <input type="text" class="form-control" id="phone" placeholder="請輸入連絡電話" name="phone" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="name">連絡人:</label>
-        <div class="col-sm-4">
-          <input type="text" class="form-control" id="name" placeholder="請輸入連絡人" name="name" required>
-        </div>
-        <br>
-        <div class="form-check col-sm-1">
-          <input class="form-check-input" type="radio" name="gender" id="gender1" value="male"
-            checked>
-          <label class="form-check-label" for="male">先生</label>
-        </div>
-        <div class="form-check col-sm-1">
-          <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
-          <label class="form-check-label" for="female">女士</label>
-        </div>
-      </div>
-      <hr>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box1">鐵路便當:</label><span class="price"> $50</span>
-        <input type="hidden" name="m1" id="m1" value="50">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box1" name="box1">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box2">海陸雙拼便當:</label><span class="price"> $50</span>
-        <input type="hidden" name="m2" id="m2" value="50">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box2" name="box2">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box3">鯖魚便當:</label><span class="price"> $50</span>
-        <input type="hidden" name="m3" id="m3" value="50">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box3" name="box3">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box4">香腸便當:</label><span class="price"> $50</span>
-        <input type="hidden" name="m4" id="m4" value="50">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box4" name="box4">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box5">打拋肉便當:</label><span class="price"> $60</span>
-        <input type="hidden" name="m5" id="m5" value="60">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box5" name="box5">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box6">打拋肉便當:</label><span class="price"> $60</span>
-        <input type="hidden" name="m6" id="m6" value="60">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box6" name="box6">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box7">滷排便當:</label><span class="price"> $60</span>
-        <input type="hidden" name="m7" id="m7" value="60">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box7" name="box7">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box8">五香鹹豬肉:</label><span class="price"> $60</span>
-        <input type="hidden" name="m8" id="m8" value="60">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box8" name="box8">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box9">琵琶雞腿便當:</label><span class="price"> $70</span>
-        <input type="hidden" name="m9" id="m9" value="70">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box9" name="box9">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box10">蒲燒鯛魚便當:</label><span class="price"> $70</span>
-        <input type="hidden" name="m10" id="m10" value="70">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box10" name="box10">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box11">高鈣軟骨便當:</label><span class="price"> $70</span>
-        <input type="hidden" name="m11" id="m11" value="70">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box11" name="box11">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box12">味噌雞便當:</label><span class="price"> $70</span>
-        <input type="hidden" name="m12" id="m12" value="70">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box12" name="box12">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box13">炸雞腿便當:</label><span class="price"> $70</span>
-        <input type="hidden" name="m13" id="m13" value="70">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box13" name="box13">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-1" for="box14">蔬菜便當:</label><span class="price"> $70</span>
-        <input type="hidden" name="m14" id="m14" value="70">
-        <div class="col-sm-4">
-          <input type="number" class="form-control" min="0" id="box14" name="box14">
-        </div>
-      </div>
-      <hr>
-      <h4>總計</h4>
-      <h5 style="padding-left:5px;">數量： <span id="qty"></span> 個</h5>
-      <h5 style="padding-left:5px;">金額： <span id="sum"></span> 元</h5>
-      <hr>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default" id="submit" disabled>送出</button>
-        </div>
-      </div>
-    </form>
-  </div>
-  
-  <!-- Button trigger modal -->
-  <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    <div class="container">
+        <h2 class="text-center">訂便當問卷調查</h2>
+        <!--<form class="form-horizontal" method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">-->
+        <form class="form-horizonta">
+            <input type="hidden" name="userId" value="">
+            <input type="hidden" name="requestBy" value="">
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="phone">連絡電話:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="phone" placeholder="請輸入連絡電話" name="phone" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="name">連絡人:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="name" placeholder="請輸入連絡人" name="name" required>
+                </div>
+                <br>
+                <div class="form-check col-sm-1">
+                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="male" checked>
+                    <label class="form-check-label" for="male">先生</label>
+                </div>
+                <div class="form-check col-sm-1">
+                    <input class="form-check-input" type="radio" name="gender" id="gender2" value="female">
+                    <label class="form-check-label" for="female">女士</label>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box1">鐵路便當:</label><span class="price"> $50</span>
+                <input type="hidden" name="m1" id="m1" value="50">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box1" name="box1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box2">海陸雙拼便當:</label><span class="price"> $50</span>
+                <input type="hidden" name="m2" id="m2" value="50">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box2" name="box2">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box3">鯖魚便當:</label><span class="price"> $50</span>
+                <input type="hidden" name="m3" id="m3" value="50">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box3" name="box3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box4">香腸便當:</label><span class="price"> $50</span>
+                <input type="hidden" name="m4" id="m4" value="50">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box4" name="box4">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box5">打拋肉便當:</label><span class="price"> $60</span>
+                <input type="hidden" name="m5" id="m5" value="60">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box5" name="box5">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box6">打拋肉便當:</label><span class="price"> $60</span>
+                <input type="hidden" name="m6" id="m6" value="60">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box6" name="box6">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box7">滷排便當:</label><span class="price"> $60</span>
+                <input type="hidden" name="m7" id="m7" value="60">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box7" name="box7">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box8">五香鹹豬肉:</label><span class="price"> $60</span>
+                <input type="hidden" name="m8" id="m8" value="60">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box8" name="box8">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box9">琵琶雞腿便當:</label><span class="price"> $70</span>
+                <input type="hidden" name="m9" id="m9" value="70">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box9" name="box9">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box10">蒲燒鯛魚便當:</label><span class="price"> $70</span>
+                <input type="hidden" name="m10" id="m10" value="70">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box10" name="box10">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box11">高鈣軟骨便當:</label><span class="price"> $70</span>
+                <input type="hidden" name="m11" id="m11" value="70">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box11" name="box11">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box12">味噌雞便當:</label><span class="price"> $70</span>
+                <input type="hidden" name="m12" id="m12" value="70">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box12" name="box12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box13">炸雞腿便當:</label><span class="price"> $70</span>
+                <input type="hidden" name="m13" id="m13" value="70">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box13" name="box13">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-1" for="box14">蔬菜便當:</label><span class="price"> $70</span>
+                <input type="hidden" name="m14" id="m14" value="70">
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" min="0" id="box14" name="box14">
+                </div>
+            </div>
+            <hr>
+            <h4>總計</h4>
+            <h5 style="padding-left:5px;">數量： <span id="qty"></span> 個</h5>
+            <h5 style="padding-left:5px;">金額： <span id="sum"></span> 元</h5>
+            <hr>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" id="submit" disabled>送出</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Button trigger modal -->
+    <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Launch demo modal
   </button>-->
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">訊息</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">訊息</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>連絡人：<span class="" id="modal_name"></span> <span class="" id="modal_phone"></span></div>
+                    <div>訂購數量：<span class="" id="modal_qty"></span>個</div>
+                    <div>訂購金額：<span class="" id="modal_sum"></span>元</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal_submit">確定送出</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div>連絡人：<span class="" id="modal_name"></span> <span class="" id="modal_phone"></span></div>
-          <div>訂購數量：<span class="" id="modal_qty"></span>個</div>
-          <div>訂購金額：<span class="" id="modal_sum"></span>元</div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal_submit">確定送出</button>
-        </div>
-      </div>
     </div>
-  </div>
 
 </body>
 
 </html>
 
 <script>
-  $(document).ready(function () {
-  	liff.init(function (data) {
-      liff.getProfile()
-        .then(profile => {
-        buildContent(profile)
-      })
-        .catch((err) => {
-        console.log('error', err);
-      });
+    $(document).ready(function () {
+        liff.init(function (data) {
+            liff.getProfile()
+                .then(profile => {
+                    buildContent(profile)
+                })
+                .catch((err) => {
+                    console.log('error', err);
+                });
+        });
+        buildContent({
+            userId: 'U75dbdba8cbbb3cc39bd67d631b28afbe'
+        });
+        $("input[type=number]").change(chkAll);
     });
-    buildContent({
-      userId: 'U75dbdba8cbbb3cc39bd67d631b28afbe'
-    });
-    $("input[type=number]").change(chkAll);
-  });
-  
-  function buildContent(data) {
-    $("input[name=requestBy]").val('lunchbox');
-    $("input[name=userId]").val(data.userId);  	
-  }
- 
-  function chkAll() {
-    var qty = 0, sum = 0;
-    var box = [], m = [];
-    box.push($("#box1").val());
-    box.push($("#box2").val());
-    box.push($("#box3").val());
-    box.push($("#box4").val());
-    box.push($("#box5").val());
-    box.push($("#box6").val());
-    box.push($("#box7").val());
-    box.push($("#box8").val());
-    box.push($("#box9").val());
-    box.push($("#box10").val());
-    box.push($("#box11").val());
-    box.push($("#box12").val());
-    box.push($("#box13").val());
-    box.push($("#box14").val());
 
-    m.push($("#m1").val());
-    m.push($("#m2").val());
-    m.push($("#m3").val());
-    m.push($("#m4").val());
-    m.push($("#m5").val());
-    m.push($("#m6").val());
-    m.push($("#m7").val());
-    m.push($("#m8").val());
-    m.push($("#m9").val());
-    m.push($("#m10").val());
-    m.push($("#m11").val());
-    m.push($("#m12").val());
-    m.push($("#m13").val());
-    m.push($("#m14").val());
-
-    for (i in box) {
-      var q = parseInt(box[i]);
-      if (isNaN(q) || q === 0)
-        continue;
-
-      var p = parseInt(m[i]);
-      qty += q;
-      sum += q * p;
+    function buildContent(data) {
+        $("input[name=requestBy]").val('lunchbox');
+        $("input[name=userId]").val(data.userId);
     }
 
-    $("#qty").html(qty);
-    $("#sum").html(sum);
-    
-    $("#submit").prop('disabled', (qty <= 0));
-    $("form").submit(function(e) {
-      e.preventDefault();
-      $('#modal_name').html($('#name').val());
-      $('#modal_phone').html($('#phone').val());
-      $('#modal_qty').html(qty);
-      $('#modal_sum').html(sum);
-      $('#exampleModal').modal({
-      	show: true,
-        backdrop: 'static'
-      });
-      /*$('#modal_submit').on('click', function() {
-        var data = {
-            	userId: data.userId,
-                requestBy: "lunchbox"        
-        };
-        $.post('https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec', $("#form").serialize(),           function(data) {
-        alert()
-        	$('.container').html(data);
-        }).done(function() {alert('done')}).fail(function(e) {alert(e)});
-      });*/
-      
-      $("modal_submit").click(function(){
-        $.post("https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec",
-        {
-          userId: data.userId,
-          requestBy: "lunchbox"  
-        },
-        function(data,status){
-            alert("Data: " + data + "\nStatus: " + status);
+    function chkAll() {
+        var qty = 0, sum = 0;
+        var box = [], m = [];
+        box.push($("#box1").val());
+        box.push($("#box2").val());
+        box.push($("#box3").val());
+        box.push($("#box4").val());
+        box.push($("#box5").val());
+        box.push($("#box6").val());
+        box.push($("#box7").val());
+        box.push($("#box8").val());
+        box.push($("#box9").val());
+        box.push($("#box10").val());
+        box.push($("#box11").val());
+        box.push($("#box12").val());
+        box.push($("#box13").val());
+        box.push($("#box14").val());
+
+        m.push($("#m1").val());
+        m.push($("#m2").val());
+        m.push($("#m3").val());
+        m.push($("#m4").val());
+        m.push($("#m5").val());
+        m.push($("#m6").val());
+        m.push($("#m7").val());
+        m.push($("#m8").val());
+        m.push($("#m9").val());
+        m.push($("#m10").val());
+        m.push($("#m11").val());
+        m.push($("#m12").val());
+        m.push($("#m13").val());
+        m.push($("#m14").val());
+
+        for (i in box) {
+            var q = parseInt(box[i]);
+            if (isNaN(q) || q === 0)
+                continue;
+
+            var p = parseInt(m[i]);
+            qty += q;
+            sum += q * p;
+        }
+
+        $("#qty").html(qty);
+        $("#sum").html(sum);
+
+        $("#submit").prop('disabled', (qty <= 0));
+        $("#submit").click(function (e) {
+        e.preventDefault();
+            $('#modal_name').html($('#name').val());
+            $('#modal_phone').html($('#phone').val());
+            $('#modal_qty').html(qty);
+            $('#modal_sum').html(sum);
+            $('#exampleModal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+            //liff.closeWindow();
+            //window.top.close();
         });
-      });
-      return false;
-      //liff.closeWindow();
-      //window.top.close();
-    });
-  }
+        $('#modal_submit').on('click', function () {
+            $.post('https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec',
+                {
+               		userId: $("input[name=userId]").val(),
+               		requestBy: "lunchbox",
+                    boxes: box,
+                    ms: m
+                },
+                function (d) {
+                    $('.container').html('<h3 class="text-center">' + d + '</h3>');
+                }
+            ).done(function (d) {alert()});
+        });
+    }
 </script>
