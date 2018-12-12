@@ -277,13 +277,16 @@
                 {
                		userId: $("input[name=userId]").val(),
                		requestBy: "lunchbox",
+                    name: $('#name').val(),
+                    phone: $('#phone').val(),
+                    gender: $('input[name=gender]').val(),
                     boxes: box,
                     ms: m
                 },
                 function (d) {
-                    $('.container').html('<h3 class="text-center">' + d + '</h3>');
+                    $('.container').html('<h3 class="text-center">' + d + '</h3><button onclick="liff.closeWindow()">關閉</button>');
                 }
-            ).done(function (d) {alert()});
+            ).done(function (d) {});
         });
     }
 </script>
