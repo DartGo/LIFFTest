@@ -20,7 +20,9 @@
 
   <div class="container">
     <h2 class="text-center">訂便當問卷調查</h2>
-    <form class="form-horizontal" method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">
+    <!--<form class="form-horizontal" method="post" action="https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec">-->
+      
+    <form class="form-horizontal" id="form">
       <input type="hidden" name="userId" value="">
       <input type="hidden" name="requestBy" value="">
       <div class="form-group">
@@ -156,6 +158,34 @@
       </div>
     </form>
   </div>
+  
+  <!-- Button trigger modal -->
+  <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">訊息</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>連絡人：<span class="" id="modal_name"></span> <span class="" id="modal_phone"></span></div>
+          <div>訂購數量：<span class="" id="modal_qty"></span>個</div>
+          <div>訂購金額：<span class="" id="modal_sum"></span>元</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" id="modal_submit">確定送出</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
@@ -182,7 +212,7 @@
     $("input[name=requestBy]").val('lunchbox');
     $("input[name=userId]").val(data.userId);  	
   }
-
+ 
   function chkAll() {
     var qty = 0, sum = 0;
     var box = [], m = [];
@@ -230,5 +260,40 @@
     $("#sum").html(sum);
     
     $("#submit").prop('disabled', (qty <= 0));
+    $("form").submit(function(e) {
+      e.preventDefault();
+      $('#modal_name').html($('#name').val());
+      $('#modal_phone').html($('#phone').val());
+      $('#modal_qty').html(qty);
+      $('#modal_sum').html(sum);
+      $('#exampleModal').modal({
+      	show: true,
+        backdrop: 'static'
+      });
+      /*$('#modal_submit').on('click', function() {
+        var data = {
+            	userId: data.userId,
+                requestBy: "lunchbox"        
+        };
+        $.post('https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec', $("#form").serialize(),           function(data) {
+        alert()
+        	$('.container').html(data);
+        }).done(function() {alert('done')}).fail(function(e) {alert(e)});
+      });*/
+      
+      $("modal_submit").click(function(){
+        $.post("https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec",
+        {
+          userId: data.userId,
+          requestBy: "lunchbox"  
+        },
+        function(data,status){
+            alert("Data: " + data + "\nStatus: " + status);
+        });
+      });
+      return false;
+      //liff.closeWindow();
+      //window.top.close();
+    });
   }
 </script>
