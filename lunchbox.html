@@ -238,8 +238,8 @@
       e.preventDefault();
       $('#modal_name').html($('#name').val());
       $('#modal_phone').html($('#phone').val());
-      $('#modal_qty').html(qty);
-      $('#modal_sum').html(sum);
+      $('#modal_qty').html($("#qty").html());
+      $('#modal_sum').html($("#sum").html());
       $('#exampleModal').modal({
         show: true,
         backdrop: 'static' // modal
@@ -255,17 +255,17 @@
             requestBy: "lunchbox",
             name: $('#name').val(),
             phone: $('#phone').val(),
-            gender: $('input[name=gender]').val(),
-            boxes: boxes.toString(), // google app script 無法使用 array
-            ms: ms.toString()
+            gender: $('input[name=gender]:checked').val(),
+            boxes: boxes,
+            ms: ms
           };
-      alert(data.boxes);
 
-      $.post('https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec',
-             data,
+      /*$.post('https://script.google.com/macros/s/AKfycbxJeLqY0d44tcqee6ByEsrd8E0Ut6333W_jp3FRFsEcPlBD0HE/exec',
+             JSON.stringify(data),
              function (d) {
         closeModal(d);
-      }).done(function (d) {}); // keep
+      }).done(function (d) {}); // keep*/
+      alert(data.gender);
     });
     
     function closeModal(d) {
