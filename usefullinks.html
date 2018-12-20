@@ -51,19 +51,21 @@
     <li><a data-toggle="tab" href="#menu1">食</a></li>
     <li><a data-toggle="tab" href="#menu2">衣</a></li>
     <li><a data-toggle="tab" href="#menu3">住</a></li>
-    <li class="active"><a data-toggle="tab" href="#menu4">行</a></li>
-    <!--<li class="dropdown active">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#menu4">行
+    <!--<li class="active"><a data-toggle="tab" href="#menu40">行</a></li>-->
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown">行
         <span class="caret"></span></a>
       <ul class="dropdown-menu">
-        <li><a data-toggle="tab" href="#menu41">台鐵</a></li>
-        <li><a data-toggle="tab" href="#menu42">高鐵</a></li>
+        <li><a data-toggle="tab" href="#menu4">全部</a></li>
+        <li><a href="https://www2.moeaboe.gov.tw/oil102/oil2017/newmain.asp">油價資訊</a></li>
+        <li><a href="https://www.railway.gov.tw/pda/index.aspx">台鐵</a></li>
+        <li><a href="http://m.thsrc.com.tw/">高鐵</a></li>
         <li><a data-toggle="tab" href="#menu43">客運</a></li>
         <li><a data-toggle="tab" href="#menu44">公車</a></li>
         <li><a data-toggle="tab" href="#menu45">捷運</a></li>
         <li><a data-toggle="tab" href="#menu46">腳踏車</a></li>
       </ul>
-    </li>-->
+    </li>
     <li><a data-toggle="tab" href="#menu5">育</a></li>
     <li><a data-toggle="tab" href="#menu6">樂</a></li>
   </ul>
@@ -80,6 +82,14 @@
     </div>    
     <div id="menu4" class="tab-pane fade in active">
       <br><p>載入中...</p>
+    </div>    
+    <div id="menu43" class="tab-pane fade">
+    </div>    
+    <div id="menu44" class="tab-pane fade">
+    </div>    
+    <div id="menu45" class="tab-pane fade">
+    </div>    
+    <div id="menu46" class="tab-pane fade">
     </div>
     <div id="menu5" class="tab-pane fade">      
       <br><p>建置中...</p>
@@ -116,17 +126,27 @@
       }
      
       var dieting = '', clothing = '', accommodation = '', trans = '', education = '', recreation = '';
+      var trans_bus = '', trans_citybus = '', trans_mrt = '', trans_bike = '';
       services.forEach(function (s) {
         if (!s.Status) return;
         
         var htmlstring = '<a class="btn btn-info btn-block m_font" href="' + s.TargetUrl + '">' + s.Service + ' <i class="fa fa-external-link sss_font"></i></a>';
-        if (s.SubCatalog === 'transportation') {
-          trans += htmlstring;
+        if (s.SubCatalog.substring(0, 5) === 'trans') {
+          if (s.SubCatalog === 'trans_bus') trans_bus += htmlstring;
+          else if (s.SubCatalog === 'trans_citybus') trans_citybus += htmlstring;
+          else if (s.SubCatalog === 'trans_mrt') trans_mrt += htmlstring;
+          else if (s.SubCatalog === 'trans_bike') trans_bike += htmlstring;
+          else trans += htmlstring;
         } else if (s.SubCatalog === 'recreation') {
           recreation += htmlstring;
         }
       })
+      trans += trans_bus + trans_citybus + trans_mrt + trans_bike;
       $('#menu4').html('<br>' + trans);
+      $('#menu43').html('<br>' + trans_bus);
+      $('#menu44').html('<br>' + trans_citybus);
+      $('#menu45').html('<br>' + trans_mrt);
+      $('#menu46').html('<br>' + trans_bike);
       $('#menu6').html('<br>' + recreation);
 
     });
