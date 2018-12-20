@@ -9,6 +9,7 @@
   <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
@@ -39,15 +40,7 @@
     .tab-content p {
       text-align: center;
     }
-    .navmenu-nav.dropdown-menu { position:relative; }
-    ul.nav li.dropdown:hover > ul.dropdown-menu {
-      display: block;    
-    }
-    @media (min-width: 979px) {
-      ul.nav li.dropdown:hover > ul.dropdown-menu {
-        display: block;
-      }
-    }
+    
   </style>
 </head>
 
@@ -60,10 +53,11 @@
     <li><a data-toggle="tab" href="#menu1">食</a></li>
     <li><a data-toggle="tab" href="#menu2">衣</a></li>
     <li><a data-toggle="tab" href="#menu3">住</a></li>
-    <!--<li class="active"><a data-toggle="tab" href="#menu40">行</a></li>-->
+    <!--<li class="active"><a data-toggle="tab" href="#menu4">行</a></li>-->
     <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown">行
-        <!--<span class="caret"></span></a>-->
+      <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">行
+        <!--<span class="caret"></span>-->
+        </a>
       <ul class="dropdown-menu">
         <li><a data-toggle="tab" href="#menu4">全部</a></li>
         <li><a href="https://www2.moeaboe.gov.tw/oil102/oil2017/newmain.asp">油價資訊</a></li>
@@ -82,6 +76,17 @@
   <div class="tab-content">
     <div id="menu1" class="tab-pane fade">
       <br><p>建置中...</p>
+      
+            <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
     </div>
     <div id="menu2" class="tab-pane fade">
       <br><p>建置中...</p>
@@ -91,6 +96,7 @@
     </div>    
     <div id="menu4" class="tab-pane fade in active">
       <br><p>載入中...</p>
+
     </div>    
     <div id="menu43" class="tab-pane fade">
     </div>    
