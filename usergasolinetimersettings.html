@@ -303,6 +303,9 @@
       /// 
       $("input[name=requestBy]").val('gasoline');
       $("input[name=userId]").val(data.userId);
+      $('input[type=submit]').click(function() {
+      	liff.closeWindow();
+      });
     });
   }
 </script>
