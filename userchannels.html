@@ -90,8 +90,8 @@
         			<span id="weather_title"><span>
                 </td>
                 <td class="text-right" width="10%">
-                  <span id="edit_weather">
-                      <a href="https://dartgo.github.io/LIFFTest/userweathertimersettings.html"><i class="material-icons">edit</i></a>
+                  <span>
+                      <a href="" id="edit_weather"><i class="material-icons">edit</i></a>
                   </span>
                 </td>
               </tr>
@@ -260,6 +260,7 @@ var links ='';
       $('#uvi_title').html();
       $('#aqi_title').html();
       $('.location').html('地點：' + services.County);
+      $('#edit_weather').prop('href', 'https://dartgo.github.io/LIFFTest/userweathertimersettings.html');
       
       // 訂閱頻道 
       var trs, tds;
@@ -268,7 +269,7 @@ var links ='';
         const inService = c.InService ? '<span>&#10003;</span>' : '<span>&#10005;</span>'
 		var link = '<a class="btn btn-info btn-block m_font" href="' + c.TargetUrl + '">' + c.Service + ' <i class="fa fa-external-link sss_font"></i></a>';
         tds = '<tr><td>' + link + '</td><td>' + inService + '</td>';
-        tds += '<td><a href="https://dartgo.github.io/LIFFTest/userinvoicetimersettings.html"><i class="material-icons">edit</i></a></td>';
+        tds += '<td><a href="' + c.TimerSettingUrl +'"><i class="material-icons">edit</i></a></td>';
         trs += tds;
       })
       $('#channel').html(trs); 
